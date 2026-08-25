@@ -1,0 +1,25 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[proceso,below=of n0] (n1) {máximo = -9999};
+  \node[proceso,below=of n1] (n2) {FOR dia = 1 TO 5 STEP 1};
+  \node[entradaSalida,below=of n2] (n3) {temperatura};
+  \node[decision,below=of n3] (n4) {temperatura > máximo?};
+  \node[proceso,below=of n4] (n5) {máximo = temperatura};
+  \node[proceso,below=of n5] (n6) {Siguiente dia};
+  \node[documento,below=of n6] (n7) {"La temperatura máxima... " + máximo};
+  \node[iniciofin,below=of n7] (n8) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=MoradoLinea] (n3) -- (n4);
+  \draw[draw=VerdeLinea] (n4) -- node[etiqueta,right=2pt,pos=.45] {YES} (n5);
+  \draw[draw=NaranjaLinea] (n4.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n6.east);
+  \draw[draw=RosaLinea] (n5) -- (n6);
+  \draw[draw=MoradoLinea] (n6.west) --  ++(-43mm,0) |- ($(n1.south)!.5!(n2.north)$);
+  \draw[draw=MoradoLinea,dashed] (n2.east) --  node[etiqueta,above=2pt,pos=.45] {Límite alcanzado} ++(48mm,0) |-  (n7.east);
+  \draw[draw=TurquesaLinea] (n7) -- (n8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

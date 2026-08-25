@@ -1,0 +1,20 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {tabla\_del};
+  \node[proceso,below=of n1] (n2) {FOR multiplicador = 1 TO 10 STEP 1};
+  \node[proceso,below=of n2,text width=45mm] (n3) {resultado = tabla\_del * multiplicador};
+  \node[documento,below=of n3,text width=45mm] (n4) {tabla\_del + " x " + multiplicador + " = " + resultado};
+  \node[proceso,below=of n4] (n5) {Siguiente multiplicador};
+  \node[iniciofin,below=of n5] (n6) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=MoradoLinea] (n3) -- (n4);
+  \draw[draw=AzulLinea] (n4) -- (n5);
+  \draw[draw=MoradoLinea] (n5.west) --  ++(-43mm,0) |- ($(n1.south)!.5!(n2.north)$);
+  \draw[draw=MoradoLinea,dashed] (n2.east) --  node[etiqueta,above=2pt,pos=.45] {Límite alcanzado} ++(43mm,0) |-  (n6.east);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

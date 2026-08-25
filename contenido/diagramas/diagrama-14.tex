@@ -1,0 +1,24 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {cantidad\_n};
+  \node[proceso,below=of n1,text width=45mm] (n2) {contador = 1\\suma = 0};
+  \node[decision,below=of n2] (n3) {contador <= cantidad\_n?};
+  \node[entradaSalida,below=of n3] (n4) {numero\_actual};
+  \node[proceso,below=of n4,text width=45mm] (n5) {suma = suma + numero\_actual\\contador = contador + 1};
+  \node[proceso,below=of n5] (n6) {promedio = suma / cantidad\_n};
+  \node[documento,below=of n6] (n7) {"La media es: " + promedio};
+  \node[iniciofin,below=of n7] (n8) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=VerdeLinea] (n3) -- node[etiqueta,right=2pt,pos=.45] {YES} (n4);
+  \draw[draw=AzulLinea] (n4) -- (n5);
+  \draw[draw=MoradoLinea] (n5.west) --  ++(-43mm,0) |- ($(n2.south)!.5!(n3.north)$);
+  \draw[draw=NaranjaLinea] (n3.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n6.east);
+  \draw[draw=MoradoLinea] (n6) -- (n7);
+  \draw[draw=AzulLinea] (n7) -- (n8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

@@ -1,0 +1,63 @@
+\clearpage
+\section{Demo de diagramas de flujo en LaTeX}
+
+Sí: LaTeX puede dibujar correctamente el símbolo de \textbf{documento},
+incluido su borde inferior ondulado. En este cuadernillo se usa TikZ, por lo
+que el diagrama queda en formato vectorial y conserva su nitidez al imprimir.
+
+\subsection{Símbolos solicitados}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[flujo,node distance=18mm]
+    \node[documento] (doc) {Documento};
+    \node[operacionManual,right=of doc] (manual) {Operación manual};
+  \end{tikzpicture}
+  \caption{Reproducción vectorial de los símbolos de las imágenes de referencia.}
+\end{figure}
+
+El primer símbolo representa convencionalmente un \textbf{documento o
+reporte}; no representa el inicio del algoritmo. El segundo, con forma de
+trapecio, representa una \textbf{operación manual}. Para inicio y fin se suele
+usar el terminador ovalado. Si la convención indicada por el docente exige el
+documento en otra posición, el estilo \texttt{documento} permite colocarlo sin
+perder la forma ondulada.
+
+\clearpage
+\vspace*{0pt}
+\subsection{Ejemplo completo}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[flujo,node distance=5mm and 16mm]
+    \node[iniciofin] (inicio) {Inicio};
+    \node[entradaSalida,below=of inicio] (leer) {Leer nombre};
+    \node[decision,below=of leer] (valido) {¿Tiene contenido?};
+    \node[proceso,below=of valido] (saludo) {Preparar saludo};
+    \node[documento,below=of saludo] (reporte) {Generar documento};
+    \node[iniciofin,below=of reporte] (fin) {Fin};
+    \node[operacionManual,right=23mm of valido] (captura) {Capturar nombre\\manualmente};
+
+    \draw (inicio) -- (leer);
+    \draw (leer) -- (valido);
+    \draw (valido) -- node[left,draw=none,fill=white] {Sí} (saludo);
+    \draw (saludo) -- (reporte);
+    \draw (reporte) -- (fin);
+    \draw (valido) -- node[above,draw=none,fill=white] {No} (captura);
+    \draw (captura) |- (leer);
+  \end{tikzpicture}
+  \caption{Flujo de ejemplo con terminador, entrada/salida, decisión, proceso,
+  operación manual y documento.}
+\end{figure}
+
+\subsection{Código mínimo reutilizable}
+
+El estilo ya está definido en \texttt{cuadernillo.tex}. Para insertar el
+símbolo ondulado en cualquier actividad basta con escribir:
+
+\begin{lstlisting}[language=TeX]
+\begin{tikzpicture}[flujo]
+  \node[documento] (resultado) {Reporte final};
+\end{tikzpicture}
+\end{lstlisting}
+\thispagestyle{fancy}

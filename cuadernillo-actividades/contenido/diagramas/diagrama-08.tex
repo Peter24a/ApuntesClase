@@ -1,0 +1,15 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {anio\_nacimiento};
+  \node[proceso,below=of n1,text width=45mm] (n2) {edad\_calculada = 2026 - anio\_nacimiento};
+  \node[documento,below=of n2,text width=45mm] (n3) {"Tienes " + edad\_calculada + " años"};
+  \node[iniciofin,below=of n3] (n4) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=MoradoLinea] (n3) -- (n4);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

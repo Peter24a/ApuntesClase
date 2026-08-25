@@ -1,0 +1,53 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (a) {INICIO};
+  \node[proceso,below=of a] (b) {saldo = 1000};
+  \node[entradaSalida,below=of b] (c) {menú y opción};
+  \node[decision,below=of c] (d) {opción == 1?};
+  \node[documento,left=42mm of d] (e) {saldo};
+  \node[decision,below=of d] (f) {opción == 2?};
+  \node[entradaSalida,below=of f] (g) {retiro};
+  \node[decision,below=of g] (h) {retiro <= saldo?};
+  \node[proceso,text width=45mm,below=of h] (i) {saldo = saldo - retiro\\"Retiro exitoso"};
+  \node[documento,right=42mm of h] (j) {"Fondos insuficientes"};
+  \node[decision,below=of i] (k) {opción != 3?};
+  \node[documento,below=of k] (l) {"Iniciando protocolo..."};
+  \node[proceso,below=of l] (m) {FOR fase = 1 TO 3 STEP 1};
+  \node[documento,below=of m] (n) {"Cerrando fase... " + fase};
+  \node[proceso,below=of n] (o) {Siguiente fase};
+  \node[documento,right=42mm of m] (p) {"Gracias"};
+  \node[iniciofin,below=of p] (q) {FIN};
+  \node[conector,left=52mm of c] (ca2) {A};
+  \node[conector,left=52mm of k] (ca1) {A};
+  \node[conector,right=52mm of f] (cc1) {C};
+  \node[conector,right=52mm of k] (cc2) {C};
+  \node[conector,left=52mm of m] (cb2) {B};
+  \node[conector,left=52mm of o] (cb1) {B};
+  \draw[draw=AzulLinea] (a) -- (b);
+  \draw[draw=TurquesaLinea] (b) -- (c);
+  \draw[draw=RosaLinea] (c) -- (d);
+  \draw[draw=VerdeLinea] (d.west) -- node[etiqueta,above=2pt] {SÍ} (e.east);
+  \draw[draw=MoradoLinea] (e.south) |- ($(i.south)!.25!(k.north)$);
+  \draw[draw=NaranjaLinea] (d) -- node[etiqueta,right=2pt] {NO} (f);
+  \draw[draw=VerdeLinea] (f) -- node[etiqueta,right=2pt] {SÍ} (g);
+  \draw[draw=NaranjaLinea] (f.east) -- node[etiqueta,above=2pt] {NO} (cc1);
+  \draw[draw=MoradoLinea] (cc2) |- ($(i.south)!.5!(k.north)$);
+  \draw[draw=AzulLinea] (g) -- (h);
+  \draw[draw=VerdeLinea] (h) -- node[etiqueta,right=2pt] {SÍ} (i);
+  \draw[draw=NaranjaLinea] (h.east) -- node[etiqueta,above=2pt] {NO} (j.west);
+  \draw[draw=TurquesaLinea] (i) -- (k);
+  \draw[draw=MoradoLinea] (j.south) |- ($(i.south)!.75!(k.north)$);
+  \draw[draw=VerdeLinea] (k.west) -- node[etiqueta,above=2pt] {SÍ} (ca1);
+  \draw[draw=MoradoLinea] (ca2) |- ($(b.south)!.5!(c.north)$);
+  \draw[draw=NaranjaLinea] (k) -- node[etiqueta,right=2pt] {NO} (l);
+  \draw[draw=AzulLinea] (l) -- (m);
+  \draw[draw=TurquesaLinea] (m) -- (n);
+  \draw[draw=RosaLinea] (n) -- (o);
+  \draw[draw=MoradoLinea] (o.west) -- (cb1);
+  \draw[draw=MoradoLinea] (cb2) |- ($(l.south)!.5!(m.north)$);
+  \draw[draw=MoradoLinea,dashed] (m.east) -- node[etiqueta,above=2pt] {Límite alcanzado} (p.west);
+  \draw[draw=AzulLinea] (p) -- (q);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

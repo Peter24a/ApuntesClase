@@ -1,0 +1,20 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {número};
+  \node[proceso,below=of n1] (n2) {residuo = número MOD 2};
+  \node[decision,below=of n2] (n3) {residuo == 0?};
+  \node[documento,below=of n3] (n4) {"El número es Par"};
+  \node[documento,below=of n4] (n5) {"El número es Impar"};
+  \node[iniciofin,below=of n5] (n6) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=VerdeLinea] (n3) -- node[etiqueta,right=2pt,pos=.45] {YES} (n4);
+  \draw[draw=NaranjaLinea] (n3.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n5.east);
+  \draw[draw=TurquesaLinea] (n4.east) --  ++(48mm,0) |-  (n6.east);
+  \draw[draw=RosaLinea] (n5) -- (n6);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

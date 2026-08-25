@@ -1,0 +1,218 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Idioma, tipografia y pagina -------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.08}
+
+% --- Color, cajas, tablas y listas -----------------------------------------
+\usepackage{xcolor}
+\definecolor{AzulParcial}{HTML}{24527A}
+\definecolor{AzulClaro}{HTML}{EAF2F8}
+\definecolor{GrisTexto}{HTML}{374151}
+\definecolor{MoradoCaja}{HTML}{7C3AED}
+\definecolor{MoradoClaro}{HTML}{F3E8FF}
+\definecolor{NaranjaCaja}{HTML}{EA580C}
+\definecolor{NaranjaClaro}{HTML}{FFF7ED}
+\definecolor{VerdeCaja}{HTML}{15803D}
+\definecolor{VerdeClaro}{HTML}{F0FDF4}
+\definecolor{AzulLinea}{HTML}{2563EB}
+\definecolor{VerdeLinea}{HTML}{16A34A}
+\definecolor{NaranjaLinea}{HTML}{EA580C}
+\definecolor{MoradoLinea}{HTML}{7C3AED}
+\definecolor{RosaLinea}{HTML}{DB2777}
+\definecolor{TurquesaLinea}{HTML}{0F766E}
+
+% --- Colores semánticos para tipos de bloque en diagramas de flujo ---------
+\definecolor{BordeInicio}{HTML}{2563EB}
+\definecolor{FondoInicio}{HTML}{EFF6FF}
+\definecolor{BordeProceso}{HTML}{475569}
+\definecolor{FondoProceso}{HTML}{F8FAFC}
+\definecolor{BordeEntrada}{HTML}{0D9488}
+\definecolor{FondoEntrada}{HTML}{F0FDFA}
+\definecolor{BordeDecision}{HTML}{D97706}
+\definecolor{FondoDecision}{HTML}{FFFBEB}
+\definecolor{BordeSalida}{HTML}{7C3AED}
+\definecolor{FondoSalida}{HTML}{FAF5FF}
+\definecolor{BordeManual}{HTML}{E11D48}
+\definecolor{FondoManual}{HTML}{FFF1F2}
+\definecolor{BordeConector}{HTML}{4B5563}
+\definecolor{FondoConector}{HTML}{F3F4F6}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\newcounter{none}
+\setlength{\tabcolsep}{3pt}
+\hfuzz=0.5pt
+\AtBeginEnvironment{longtable}{\footnotesize}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{adjustbox}
+
+% --- Matematicas y codigo ---------------------------------------------------
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\lstdefinestyle{apuntes}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{black!3},
+  frame=single,
+  rulecolor=\color{black!15},
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible
+}
+\lstset{style=apuntes}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+% --- Diagramas de flujo ----------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric,shapes.symbols}
+
+\tikzset{
+  flujo/.style={
+    >=Latex,
+    node distance=9mm and 16mm,
+    every path/.style={draw=GrisTexto,thick,-{Latex[length=2.4mm]}},
+    every node/.style={font=\small,align=center,text=GrisTexto}
+  },
+  etiqueta/.style={
+    draw=none,fill=white,inner sep=1.5pt
+  },
+  iniciofin/.style={
+    ellipse,draw=BordeInicio,very thick,fill=FondoInicio,
+    minimum width=31mm,minimum height=10mm
+  },
+  proceso/.style={
+    rectangle,draw=BordeProceso,very thick,fill=FondoProceso,
+    rounded corners=1pt,minimum width=30mm,minimum height=10mm,
+    inner xsep=4mm
+  },
+  decision/.style={
+    diamond,draw=BordeDecision,very thick,fill=FondoDecision,
+    aspect=2,inner sep=1.5pt,minimum width=30mm,minimum height=12mm
+  },
+  entradaSalida/.style={
+    trapezium,trapezium left angle=70,trapezium right angle=110,
+    draw=BordeEntrada,very thick,fill=FondoEntrada,
+    minimum width=32mm,minimum height=10mm,inner xsep=4mm
+  },
+  documento/.style={
+    tape,tape bend top=none,tape bend bottom=in and out,
+    tape bend height=5pt,
+    draw=BordeSalida,very thick,fill=FondoSalida,
+    minimum width=35mm,minimum height=12mm,
+    inner xsep=4mm,inner ysep=2.5mm
+  },
+  operacionManual/.style={
+    trapezium,trapezium angle=110,
+    draw=BordeManual,very thick,fill=FondoManual,
+    minimum width=42mm,minimum height=12mm
+  },
+  conector/.style={
+    circle,draw=BordeConector,very thick,fill=FondoConector,
+    minimum size=7mm,inner sep=0pt
+  }
+}
+
+% --- Encabezados y enlaces -------------------------------------------------
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Cuadernillo de actividades}
+\rhead{Parcial \NumeroParcial}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+% --- Datos que se modifican una sola vez -----------------------------------
+\newcommand{\Asignatura}{Razonamiento computacional y diseño de algoritmos}
+\newcommand{\NumeroParcial}{1}
+\newcommand{\Docente}{Walter Alexander Mata López}
+\newcommand{\Estudiante}{}
+\newcommand{\Grupo}{}
+
+% --- Entornos reutilizables ------------------------------------------------
+\newcounter{actividad}
+\newenvironment{actividad}[1]{%
+  \refstepcounter{actividad}
+  \begin{tcolorbox}[
+    enhanced,breakable,
+    colback=VerdeClaro,colframe=VerdeCaja,
+    colbacktitle=VerdeCaja,coltitle=white,
+    fonttitle=\bfseries,
+    title={Actividad \theactividad: #1},
+    arc=3mm,boxrule=0.8pt,
+    attach boxed title to top left={xshift=5mm,yshift=-2.5mm},
+    boxed title style={arc=2mm,boxrule=0pt,left=3mm,right=3mm},
+    top=7mm,left=4mm,right=4mm,bottom=4mm
+  ]
+}{\end{tcolorbox}}
+
+\newtcolorbox{objetivo}{
+  enhanced,breakable,
+  colback=MoradoClaro,colframe=MoradoCaja,
+  boxrule=0pt,leftrule=4pt,arc=2.5mm,
+  title=Objetivo,fonttitle=\bfseries,
+  colbacktitle=MoradoClaro,coltitle=MoradoCaja,
+  titlerule=0pt,left=4mm,right=4mm,bottom=3mm
+}
+
+\newcommand{\espaciorespuesta}[1][3cm]{%
+  \par\vspace{2mm}
+  \begin{tcolorbox}[
+    enhanced,colback=NaranjaClaro,colframe=NaranjaCaja,
+    colbacktitle=NaranjaCaja,coltitle=white,
+    height=#1,title=Respuesta,fonttitle=\bfseries,
+    arc=2.5mm,boxrule=0.7pt,
+    left=3mm,right=3mm,bottom=3mm
+  ]
+  \end{tcolorbox}
+}
+
+\begin{document}
+\shorthandoff{"}
+\setcounter{secnumdepth}{0}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  \vspace*{2.2cm}
+  {\color{AzulParcial}\rule{\textwidth}{1.5pt}}\\[1.1cm]
+  {\Huge\bfseries Cuadernillo de actividades\par}
+  \vspace{3mm}
+  {\LARGE Parcial \NumeroParcial\par}
+  \vspace{8mm}
+  {\Large \Asignatura\par}
+  \vspace{1.1cm}
+  {\color{AzulParcial}\rule{\textwidth}{1.5pt}}\\[1.4cm]
+
+  \begin{tabular}{@{}rl@{}}
+    \textbf{Estudiante:} & \Estudiante \\[3mm]
+    \textbf{Grupo:}      & \Grupo \\[3mm]
+    \textbf{Docente:}    & \Docente
+  \end{tabular}
+
+  \vfill
+  {\large Material de trabajo y evidencias de aprendizaje\par}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{Roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\input{contenido/10-apuntes-clase}
+
+\end{document}

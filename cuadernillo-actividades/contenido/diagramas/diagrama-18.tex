@@ -1,0 +1,16 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[proceso,below=of n0] (n1) {FOR i = 1 TO 10 STEP 1};
+  \node[documento,below=of n1] (n2) {"El número actual es: " + i};
+  \node[proceso,below=of n2] (n3) {Siguiente i};
+  \node[iniciofin,below=of n3] (n4) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=MoradoLinea] (n3.west) --  ++(-43mm,0) |- ($(n0.south)!.5!(n1.north)$);
+  \draw[draw=MoradoLinea,dashed] (n1.east) --  node[etiqueta,above=2pt,pos=.45] {Límite alcanzado} ++(43mm,0) |-  (n4.east);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

@@ -1,0 +1,23 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {valor};
+  \node[decision,below=of n1] (n2) {valor == 0?};
+  \node[documento,below=of n2] (n3) {"El valor es Cero"};
+  \node[decision,below=of n3] (n4) {valor > 0?};
+  \node[documento,below=of n4] (n5) {"Es Positivo"};
+  \node[documento,below=of n5] (n6) {"Es Negativo"};
+  \node[iniciofin,below=of n6] (n7) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=VerdeLinea] (n2) -- node[etiqueta,right=2pt,pos=.45] {YES} (n3);
+  \draw[draw=NaranjaLinea] (n2.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n4.east);
+  \draw[draw=VerdeLinea] (n4) -- node[etiqueta,right=2pt,pos=.45] {YES} (n5);
+  \draw[draw=NaranjaLinea] (n4.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(48mm,0) |-  (n6.east);
+  \draw[draw=RosaLinea] (n3.east) --  ++(38mm,0) |-  (n7.east);
+  \draw[draw=MoradoLinea] (n5.east) --  ++(43mm,0) |-  (n7.east);
+  \draw[draw=AzulLinea] (n6) -- (n7);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

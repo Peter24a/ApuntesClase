@@ -1,0 +1,11 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[documento,below=of n0,text width=45mm] (n1) {"Iniciando entrenamiento del modelo..."};
+  \node[iniciofin,below=of n1] (n2) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

@@ -1,0 +1,18 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[proceso,below=of n0] (n1) {FOR i = 10 TO 1 STEP -1};
+  \node[documento,below=of n1] (n2) {"Lanzamiento en... " + i};
+  \node[proceso,below=of n2] (n3) {Siguiente i};
+  \node[documento,below=of n3] (n4) {"¡Despegue!"};
+  \node[iniciofin,below=of n4] (n5) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=RosaLinea] (n2) -- (n3);
+  \draw[draw=MoradoLinea] (n3.west) --  ++(-43mm,0) |- ($(n0.south)!.5!(n1.north)$);
+  \draw[draw=MoradoLinea,dashed] (n1.east) --  node[etiqueta,above=2pt,pos=.45] {Límite alcanzado} ++(43mm,0) |-  (n4.east);
+  \draw[draw=TurquesaLinea] (n4) -- (n5);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

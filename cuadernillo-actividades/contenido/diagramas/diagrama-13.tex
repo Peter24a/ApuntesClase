@@ -1,0 +1,18 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[entradaSalida,below=of n0] (n1) {calif, asistencia};
+  \node[decision,below=of n1,text width=45mm] (n2) {calif >= 6\\Y\\asistencia > 80?};
+  \node[documento,below=of n2] (n3) {"Aprobado"};
+  \node[documento,below=of n3] (n4) {"Reprobado"};
+  \node[iniciofin,below=of n4] (n5) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=VerdeLinea] (n2) -- node[etiqueta,right=2pt,pos=.45] {YES} (n3);
+  \draw[draw=NaranjaLinea] (n2.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n4.east);
+  \draw[draw=AzulLinea] (n3.east) --  ++(48mm,0) |-  (n5.east);
+  \draw[draw=TurquesaLinea] (n4) -- (n5);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

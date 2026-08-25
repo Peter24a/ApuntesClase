@@ -1,0 +1,20 @@
+\begin{center}
+\begin{adjustbox}{max width=\textwidth,max totalheight=.72\textheight,keepaspectratio}
+\begin{tikzpicture}[flujo,node distance=5mm and 14mm]
+  \node[iniciofin] (n0) {INICIO};
+  \node[proceso,below=of n0,text width=45mm] (n1) {número = 2\\cantidad\_pares = 0};
+  \node[decision,below=of n1] (n2) {número <= 10?};
+  \node[documento,below=of n2] (n3) {"Encontré el par: " + número};
+  \node[proceso,below=of n3,text width=45mm] (n4) {cantidad\_pares = cantidad\_pares + 1\\número = número + 2};
+  \node[documento,below=of n4] (n5) {"Total de pares: " + cantidad\_pares};
+  \node[iniciofin,below=of n5] (n6) {FIN};
+  \draw[draw=AzulLinea] (n0) -- (n1);
+  \draw[draw=TurquesaLinea] (n1) -- (n2);
+  \draw[draw=VerdeLinea] (n2) -- node[etiqueta,right=2pt,pos=.45] {YES} (n3);
+  \draw[draw=MoradoLinea] (n3) -- (n4);
+  \draw[draw=MoradoLinea] (n4.west) --  ++(-43mm,0) |- ($(n1.south)!.5!(n2.north)$);
+  \draw[draw=NaranjaLinea] (n2.east) --  node[etiqueta,above=2pt,pos=.45] {NO} ++(43mm,0) |-  (n5.east);
+  \draw[draw=RosaLinea] (n5) -- (n6);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

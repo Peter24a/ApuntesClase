@@ -1,0 +1,1974 @@
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{1. Introducción}\label{introducciuxf3n}
+
+La inteligencia artificial y la ciencia de datos requieren resolver
+problemas complejos, desde procesar grandes volúmenes de información
+hasta entrenar modelos de aprendizaje automático. No obstante, el
+\textbf{razonamiento computacional} es una disciplina general que
+trasciende estas áreas, pues permite descomponer cualquier problema y
+formular soluciones estructuradas para que una computadora pueda
+ejecutarlas con precisión.
+
+Este proceso se apoya principalmente en dos estrategias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Abstracción:} Identificar los aspectos esenciales de una
+  situación e ignorar los detalles secundarios para concentrarse en la
+  información crítica.
+\item
+  \textbf{Descomposición:} Dividir un problema complejo en partes más
+  pequeñas y manejables que puedan resolverse paso a paso.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{2. Concepto de algoritmo y
+granularidad}\label{concepto-de-algoritmo-y-granularidad}
+
+Un \textbf{algoritmo} es un conjunto ordenado, finito y no ambiguo de
+instrucciones lógicas que conducen a la solución de un problema
+específico. Para ser formalmente correcto, todo algoritmo debe cumplir
+tres propiedades fundamentales:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Preciso:} Cada paso debe estar definido con exactitud, sin
+  margen de interpretación.
+\item
+  \textbf{Determinista:} Al procesar las mismas entradas, debe generar
+  invariablemente el mismo resultado.
+\item
+  \textbf{Finito:} Debe concluir tras un número determinado de
+  operaciones.
+\end{itemize}
+
+\subsection{2.1 El nivel de
+granularidad}\label{el-nivel-de-granularidad}
+
+Al diseñar un algoritmo, el \textbf{nivel de granularidad} representa el
+grado de detalle con el que se especifican las instrucciones:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Granularidad baja (macro-pasos):} Describe operaciones
+  generales (por ejemplo, \emph{``limpiar la base de datos''}). Es útil
+  para conceptualizar la arquitectura global de una solución, aunque una
+  computadora no puede ejecutar directamente instrucciones tan amplias.
+\item
+  \textbf{Granularidad alta (micro-pasos):} Expresa operaciones
+  elementales y atómicas, al nivel de instrucciones aritméticas y
+  lógicas que el procesador interpreta directamente.
+\end{itemize}
+
+\subsection{2.2 Algoritmos en la vida
+cotidiana}\label{algoritmos-en-la-vida-cotidiana}
+
+Antes de codificar en un entorno computacional, conviene observar cómo
+estructuramos actividades cotidianas mediante tres patrones básicos:
+
+\textbf{1. Flujo secuencial (cambio de un foco):}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Comprobar si hay electricidad en la habitación.
+\item
+  Conseguir una escalera y un foco nuevo.
+\item
+  Apagar el interruptor de la luz.
+\item
+  Desenroscar el foco fundido girando hacia la izquierda.
+\item
+  Enroscar el foco nuevo girando hacia la derecha.
+\item
+  Encender el interruptor para verificar que funcione.
+\item
+  Concluir la tarea.
+\end{enumerate}
+
+En este caso, las acciones se suceden de forma estrictamente lineal,
+ejecutando una instrucción detrás de otra.
+
+\textbf{2. Toma de decisiones (preparación de café):}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Servir agua caliente en una taza limpia.
+\item
+  Evaluar: ¿Desea azúcar?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Sí:} Agregar una cucharada de azúcar y mezclar.
+  \item
+    \textbf{No:} Mezclar directamente.
+  \end{itemize}
+\item
+  Concluir la preparación.
+\end{enumerate}
+
+En este flujo se introduce una bifurcación condicional basada en una
+preferencia.
+
+\textbf{3. Estructura iterativa (lavado de platos):}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Tomar un plato sucio de la pila.
+\item
+  Enjabonar y enjuagar el plato.
+\item
+  Evaluar: ¿Quedan platos sucios en la pila?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Sí:} Regresar al paso 1.
+  \item
+    \textbf{No:} Continuar al paso 4.
+  \end{itemize}
+\item
+  Secarse las manos y finalizar.
+\end{enumerate}
+
+Al retornar al primer paso mientras existan platos pendientes, se
+establece un ciclo de repetición.
+
+\subsection{2.3 Variables, constantes, tipos de datos y
+operadores}\label{variables-constantes-tipos-de-datos-y-operadores}
+
+\textbf{Variables y constantes:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Variables:} Espacios de memoria identificados con un nombre
+  cuyo contenido puede cambiar durante la ejecución del programa (por
+  ejemplo, \texttt{edad\ =\ 25} y más adelante \texttt{edad\ =\ 26}).
+\item
+  \textbf{Constantes:} Espacios de memoria cuyo valor se define una sola
+  vez al inicio y permanece inalterable durante toda la ejecución (por
+  ejemplo, \texttt{PI\ =\ 3.14159} o \texttt{TASA\_IVA\ =\ 0.16}).
+\end{itemize}
+
+\textbf{Buenas prácticas de nomenclatura:} Es recomendable emplear
+nombres descriptivos que expliquen la función del identificador,
+evitando letras sueltas y sin contexto. En la práctica profesional se
+utilizan convenciones como \textbf{\texttt{snake\_case}}
+(\texttt{calificacion\_final}) o \textbf{\texttt{camelCase}}
+(\texttt{calificacionFinal}).
+
+\textbf{Tipos de datos básicos:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Numéricos:} Enteros (\texttt{15}) o decimales de punto
+  flotante (\texttt{3.14}).
+\item
+  \textbf{Cadenas de caracteres (texto):} Delimitadas siempre entre
+  comillas (\texttt{"Hola\ Mundo"}).
+\end{itemize}
+
+\textbf{Operadores:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Aritméticos:} Suma (\texttt{+}), resta (\texttt{-}),
+  multiplicación (\texttt{*}), división (\texttt{/}) y módulo o residuo
+  (\texttt{MOD} o \texttt{\%}).
+\item
+  \textbf{Concatenación:} Permite unir texto y variables usando el signo
+  \texttt{+} (por ejemplo, \texttt{"Tienes\ "\ +\ edad\ +\ "\ años"}).
+\item
+  \textbf{Lógicos:} Operadores \texttt{Y} (AND), \texttt{O} (OR) y
+  \texttt{NO} (NOT) para articular condiciones compuestas.
+\end{itemize}
+
+\textbf{Diferencia clave: Asignación vs.~Comparación (\texttt{=} vs
+\texttt{==}):}
+
+\begin{itemize}
+\tightlist
+\item
+  Un solo signo igual (\texttt{=}) se emplea para \textbf{asignar} un
+  dato a una variable (por ejemplo, \texttt{saldo\ =\ 1000}).
+\item
+  El doble signo igual (\texttt{==}) se utiliza para \textbf{comparar}
+  dos valores dentro de una condición lógica (por ejemplo,
+  \texttt{SI\ opcion\ ==\ 1}).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{3. Construcción gradual de algoritmos y
+DFDs}\label{construcciuxf3n-gradual-de-algoritmos-y-dfds}
+
+Antes de trazar un diagrama, conviene seguir una metodología
+estructurada: comprender el problema, identificar las entradas
+requeridas, definir las operaciones o fórmulas necesarias y especificar
+las salidas esperadas. En esta sección se aborda la construcción
+progresiva de algoritmos mediante pseudocódigo, diagramas de flujo de
+datos (DFD) y tablas de prueba de escritorio.
+
+\textbf{Reglas para líneas de flujo y conectores:}
+
+\begin{itemize}
+\tightlist
+\item
+  El flujo natural se orienta de arriba hacia abajo y de izquierda a
+  derecha.
+\item
+  Las líneas de flujo no deben cruzarse; cuando el diagrama se extiende
+  o requiere enlazar puntos distantes, se utilizan conectores dentro de
+  la misma página (círculo con identificador) o conectores fuera de
+  página (pentágono).
+\item
+  A excepción del inicio y el fin, cada bloque debe tener al menos una
+  línea de entrada y una de salida para evitar trayectorias inconclusas.
+\end{itemize}
+
+\textbf{La prueba de escritorio:} Consiste en una verificación manual
+donde se simula la ejecución del algoritmo mediante una tabla,
+registrando paso a paso el estado de las variables y las salidas
+emitidas para comprobar su correcto funcionamiento y evaluar casos
+extremos.
+
+A continuación se ilustra la prueba de escritorio para un ciclo que
+cuenta del 1 al 3 (\texttt{PARA\ i\ =\ 1\ HASTA\ 3}):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta / Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+¿Límite alcanzado?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Variable \texttt{i} (Memoria)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción en pantalla (Salida)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & NO & 1 & ``Imprimiendo 1'' \\
+Incremento & NO & 2 & ``Imprimiendo 2'' \\
+Incremento & NO & 3 & ``Imprimiendo 3'' \\
+Incremento & \textbf{SÍ (Límite)} & 4 & \emph{El programa sale del
+ciclo} \\
+\end{longtable}
+}
+
+\subsection{El esqueleto base (Estructura
+vacía)}\label{el-esqueleto-base-estructura-vacuxeda}
+
+Todo algoritmo requiere un punto de inicio y un punto de fin bien
+delimitados. En los diagramas de flujo se representan mediante el
+\textbf{óvalo} (\texttt{INICIO} y \texttt{FIN}), que formaliza el inicio
+de la ejecución y la liberación final de los recursos del sistema.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-01}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Algoritmos con instrucciones de
+salida}\label{algoritmos-con-instrucciones-de-salida}
+
+Para enviar información desde el programa hacia el usuario o hacia otros
+dispositivos se utiliza el símbolo de salida, representado aquí con el
+\textbf{trapecio de salida} \texttt{{[}\textbackslash{}\ ...\ /{]}}.
+Esta instrucción despliega resultados en pantalla, genera impresiones o
+envía mensajes de estado.
+
+\subsubsection{Ejemplo 1: Saludo en
+pantalla}\label{ejemplo-1-saludo-en-pantalla}
+
+\textbf{Descripción:} Mostrar en pantalla un mensaje de bienvenida
+estático con el texto \texttt{"Hola\ Alexander"}.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    IMPRIMIR "Hola Alexander"
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-02}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cl@{}}
+\toprule\noalign{}
+Paso & Acción en pantalla (Salida) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \emph{Ninguna} \\
+Imprimir & ``Hola Alexander'' \\
+Fin & \emph{Programa terminado} \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 2: Mensaje de estado de un
+proceso}\label{ejemplo-2-mensaje-de-estado-de-un-proceso}
+
+\textbf{Descripción:} Notificar al usuario que una tarea en segundo
+plano ha comenzado mediante la impresión de un mensaje informativo.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    IMPRIMIR "Iniciando entrenamiento del modelo..."
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-03}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cl@{}}
+\toprule\noalign{}
+Paso & Acción en pantalla (Salida) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \emph{Ninguna} \\
+Imprimir & ``Iniciando entrenamiento del modelo\ldots{}'' \\
+Fin & \emph{Programa terminado} \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 3: Emisión de un código de
+error}\label{ejemplo-3-emisiuxf3n-de-un-cuxf3digo-de-error}
+
+\textbf{Descripción:} Mostrar un código de error estandarizado en
+pantalla cuando no se localiza un recurso o archivo necesario.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    IMPRIMIR "Error 404: Dataset no encontrado"
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-04}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cl@{}}
+\toprule\noalign{}
+Paso & Acción en pantalla (Salida) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \emph{Ninguna} \\
+Imprimir & ``Error 404: Dataset no encontrado'' \\
+Fin & \emph{Programa terminado} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Algoritmos con captura de datos (Entrada y
+Salida)}\label{algoritmos-con-captura-de-datos-entrada-y-salida}
+
+Para recibir información proporcionada por el usuario o por sensores se
+utiliza el \textbf{paralelogramo} \texttt{{[}\ /\ ...\ /\ {]}}, que
+representa la operación de lectura (\texttt{LEER}) y almacena los datos
+ingresados en variables de memoria.
+
+\subsubsection{Ejemplo 1: Lectura y confirmación de
+edad}\label{ejemplo-1-lectura-y-confirmaciuxf3n-de-edad}
+
+\textbf{Descripción:} Solicitar la edad de un paciente y mostrarla en
+pantalla junto con un mensaje de confirmación.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER edad
+    IMPRIMIR "Tu edad registrada es: " + edad
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-05}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ccl@{}}
+\toprule\noalign{}
+Paso & Variable \texttt{edad} & Acción en pantalla (Salida) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{25} \emph{(ingreso)} & \emph{Esperando entrada del
+teclado} \\
+Imprimir & 25 & ``Tu edad registrada es: 25'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 2: Concatenación de fecha y
+ciudad}\label{ejemplo-2-concatenaciuxf3n-de-fecha-y-ciudad}
+
+\textbf{Descripción:} Solicitar el nombre de una ciudad y el año en
+curso para construir un encabezado formal mediante concatenación de
+texto.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER ciudad
+    LEER anio
+    IMPRIMIR ciudad + ", Col. a 18 de agosto de " + anio
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-06}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cccl@{}}
+\toprule\noalign{}
+Paso & Var \texttt{ciudad} & Var \texttt{anio} & Acción en pantalla
+(Salida) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{``Colima''} & - & \emph{Esperando texto} \\
+Leer & ``Colima'' & \textbf{2026} & \emph{Esperando número} \\
+Imprimir & ``Colima'' & 2026 & ``Colima, Col. a 18 de agosto de
+2026'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 3: Carga de modelo por
+nombre}\label{ejemplo-3-carga-de-modelo-por-nombre}
+
+\textbf{Descripción:} Solicitar el nombre de un modelo predictivo e
+imprimir un mensaje confirmando que se encuentra listo para su
+utilización.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER nombre_modelo
+    IMPRIMIR "El modelo " + nombre_modelo + " está listo para usarse."
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-07}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3571}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3571}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2857}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Var \texttt{nombre\_modelo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción en pantalla (Salida)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{``Regresión''} & \emph{Esperando texto} \\
+Imprimir & ``Regresión'' & ``El modelo Regresión está listo para
+usarse.'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Algoritmos con Entrada, Proceso y
+Salida}\label{algoritmos-con-entrada-proceso-y-salida}
+
+El \textbf{rectángulo} \texttt{{[}\ {]}} representa operaciones de
+proceso, tales como cálculos aritméticos, asignaciones y
+transformaciones de datos que modifican el estado de las variables en
+memoria.
+
+\subsubsection{Ejemplo 1: Cálculo de edad según el año de
+nacimiento}\label{ejemplo-1-cuxe1lculo-de-edad-seguxfan-el-auxf1o-de-nacimiento}
+
+\textbf{Descripción:} Solicitar el año de nacimiento del usuario, restar
+dicho valor del año actual (2026) y mostrar la edad resultante.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER anio_nacimiento
+    edad_calculada = 2026 - anio_nacimiento
+    IMPRIMIR "Tienes " + edad_calculada + " años."
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-08}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Var \texttt{anio\_nacimiento}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Var \texttt{edad\_calculada}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción en pantalla (Salida)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{2000} & - & \emph{Esperando año numérico} \\
+Proceso & 2000 & \textbf{26} \emph{(2026-2000)} & \emph{Operación
+interna en memoria} \\
+Imprimir & 2000 & 26 & ``Tienes 26 años.'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 2: Promedio de tres
+calificaciones}\label{ejemplo-2-promedio-de-tres-calificaciones}
+
+\textbf{Descripción:} Leer tres notas parciales, calcular su promedio
+aritmético mediante suma y división, y mostrar el promedio final.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER calif_1
+    LEER calif_2
+    LEER calif_3
+    promedio = (calif_1 + calif_2 + calif_3) / 3
+    IMPRIMIR "El promedio final es: " + promedio
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-09}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cccccl@{}}
+\toprule\noalign{}
+Paso & \texttt{calif\_1} & \texttt{calif\_2} & \texttt{calif\_3} &
+\texttt{promedio} & Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{8} & \textbf{9} & \textbf{10} & - & \emph{Esperando 3
+datos} \\
+Proceso & 8 & 9 & 10 & \textbf{9} & \emph{Cálculo interno} \\
+Imprimir & 8 & 9 & 10 & 9 & ``El promedio final es: 9'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejemplo 3: Área de un terreno
+rectangular}\label{ejemplo-3-uxe1rea-de-un-terreno-rectangular}
+
+\textbf{Descripción:} Solicitar la base y la altura de un terreno
+rectangular, multiplicar ambas dimensiones y mostrar el área en metros
+cuadrados.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER base
+    LEER altura
+    area = base * altura
+    IMPRIMIR "El área total es de: " + area + " metros cuadrados"
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-10}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ccccl@{}}
+\toprule\noalign{}
+Paso & Var \texttt{base} & Var \texttt{altura} & Var \texttt{area} &
+Acción en pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{10} & \textbf{5} & - & \emph{Esperando 2 datos} \\
+Proceso & 10 & 5 & \textbf{50} & \emph{Cálculo interno} \\
+Imprimir & 10 & 5 & 50 & ``El área total es de: 50 metros cuadrados'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{4. Estructuras condicionales (toma de
+decisiones)}\label{estructuras-condicionales-toma-de-decisiones}
+
+El \textbf{rombo} \texttt{\{\ \}} evalúa una expresión lógica que solo
+puede resultar verdadera o falsa, bifurcando el flujo del programa en
+dos caminos independientes según el resultado. A continuación se
+presentan casos con decisiones simples, anidadas y combinadas mediante
+operadores lógicos.
+
+\subsection{Condicional simple: Par o
+Impar}\label{condicional-simple-par-o-impar}
+
+\textbf{Descripción:} Determinar si un número entero es par o impar
+evaluando si el residuo de su división entre 2 (\texttt{MOD}) es igual a
+cero.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER numero
+    residuo = numero MOD 2
+    SI residuo == 0 ENTONCES
+        IMPRIMIR "El número es Par"
+    SINO
+        IMPRIMIR "El número es Impar"
+    FIN SI
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-11}
+
+\textbf{Prueba de escritorio (evaluando el valor impar 7):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ccccl@{}}
+\toprule\noalign{}
+Paso & \texttt{numero} & \texttt{residuo} & Condición
+(\texttt{residuo\ ==\ 0}) & Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{7} & - & - & \emph{Esperando dato} \\
+Proceso & 7 & \textbf{1} & - & \emph{Cálculo interno} \\
+Rombo & 7 & 1 & \textbf{NO (Falso)} & \emph{Bifurca al Sino} \\
+Imprimir & 7 & 1 & - & ``El número es Impar'' \\
+\end{longtable}
+}
+
+\subsection{Condicionales anidados: Clasificar un
+número}\label{condicionales-anidados-clasificar-un-nuxfamero}
+
+\textbf{Descripción:} Clasificar un número ingresado indicando si es
+positivo, negativo o exactamente cero mediante dos decisiones
+consecutivas.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER valor
+    SI valor == 0 ENTONCES
+        IMPRIMIR "El valor es Cero"
+    SINO
+        SI valor > 0 ENTONCES
+            IMPRIMIR "Es Positivo"
+        SINO
+            IMPRIMIR "Es Negativo"
+        FIN SI
+    FIN SI
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-12}
+
+\textbf{Prueba de escritorio (evaluando el valor negativo -5):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{valor}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición 1 (\texttt{valor\ ==\ 0})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición 2 (\texttt{valor\ \textgreater{}\ 0})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{-5} & - & - & \emph{Esperando dato} \\
+Rombo 1 & -5 & \textbf{NO (Falso)} & - & \emph{Bifurca a la rama
+alternativa} \\
+Rombo 2 & -5 & - & \textbf{NO (Falso)} & \emph{Bifurca al Sino
+interno} \\
+Imprimir & -5 & - & - & ``Es Negativo'' \\
+\end{longtable}
+}
+
+\subsection{Operadores lógicos (Y, O, NO): Evaluación
+conjunta}\label{operadores-luxf3gicos-y-o-no-evaluaciuxf3n-conjunta}
+
+\textbf{Descripción:} Aprobar a un estudiante únicamente cuando su
+calificación sea mayor o igual a 6 y su asistencia supere el 80\%,
+combinando ambas condiciones con el operador \texttt{Y}.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER calificacion
+    LEER asistencia
+    SI calificacion >= 6 Y asistencia > 80 ENTONCES
+        IMPRIMIR "Aprobado"
+    SINO
+        IMPRIMIR "Reprobado"
+    FIN SI
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-13}
+
+\textbf{Prueba de escritorio (calificación aprobatoria pero asistencia
+insuficiente: 9 y 70):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{calif}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{asistencia}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición lógica conjunta (\texttt{Y})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Leer & \textbf{9} & \textbf{70} & - & \emph{Esperando datos} \\
+Rombo & 9 & 70 & \textbf{NO (Falso, pues 70 no es \textgreater{} 80)} &
+\emph{Bifurca al Sino} \\
+Imprimir & 9 & 70 & - & ``Reprobado'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{5. Estructuras iterativas
+(ciclos)}\label{estructuras-iterativas-ciclos}
+
+Las estructuras iterativas permiten repetir un bloque de instrucciones
+de manera controlada. Según el momento en que se evalúa la condición de
+permanencia y el conocimiento previo del número de repeticiones, se
+dividen en tres tipos principales.
+
+\subsection{5.1 El ciclo MIENTRAS (bucle
+While)}\label{el-ciclo-mientras-bucle-while}
+
+Evalúa la condición al \textbf{inicio}, antes de ejecutar las
+instrucciones internas: - \textbf{Comportamiento:} Si la condición es
+verdadera, ejecuta el cuerpo del ciclo; si es falsa desde el primer
+instante, no entra al bloque. - \textbf{Caso de uso:} Procesos donde el
+número total de repeticiones no se conoce de antemano y depende de una
+condición dinámica.
+
+\subsubsection{Ejercicio MIENTRAS 1: Promedio de N
+números}\label{ejercicio-mientras-1-promedio-de-n-nuxfameros}
+
+\textbf{Descripción:} Solicitar al usuario la cantidad total de números
+que desea ingresar, acumular sus valores mediante un ciclo y calcular el
+promedio final.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER cantidad_n
+    contador = 1
+    suma = 0
+    MIENTRAS contador <= cantidad_n HACER
+        LEER numero_actual
+        suma = suma + numero_actual
+        contador = contador + 1
+    FIN MIENTRAS
+    promedio = suma / cantidad_n
+    IMPRIMIR "La media es: " + promedio
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-14}
+
+\textbf{Prueba de escritorio (promediando 2 números: 8 y 10):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1471}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1176}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{cantidad\_n}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{contador}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{suma}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{numero\_actual}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición (\texttt{\textless{}=\ n})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & 2 & 1 & 0 & - & - & \emph{Esperando N} \\
+1 & 2 & 1 & 0 & \textbf{8} & \textbf{SÍ (1 \textless= 2)} &
+\emph{Esperando número} \\
+1 (Fin) & 2 & \textbf{2} & \textbf{8} & 8 & - & - \\
+2 & 2 & 2 & 8 & \textbf{10} & \textbf{SÍ (2 \textless= 2)} &
+\emph{Esperando número} \\
+2 (Fin) & 2 & \textbf{3} & \textbf{18} & 10 & - & - \\
+3 & 2 & 3 & 18 & - & \textbf{NO (3 \textless= 2 es Falso)} & \emph{Sale
+del ciclo} \\
+Salida & 2 & 3 & 18 & - & - & ``La media es: 9'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio MIENTRAS 2: Conteo e impresión de pares del 2
+al
+10}\label{ejercicio-mientras-2-conteo-e-impresiuxf3n-de-pares-del-2-al-10}
+
+\textbf{Descripción:} Desplegar los números pares entre 2 y 10
+incrementando de dos en dos, y mostrar al finalizar el total de números
+impresos.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    numero = 2
+    cantidad_pares = 0
+    MIENTRAS numero <= 10 HACER
+        IMPRIMIR "Encontré el par: " + numero
+        cantidad_pares = cantidad_pares + 1
+        numero = numero + 2
+    FIN MIENTRAS
+    IMPRIMIR "Total de pares: " + cantidad_pares
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-15}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{numero}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{cantidad\_pares}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición (\texttt{\textless{}=\ 10})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & 2 & 0 & - & - \\
+1 & 2 & 0 & \textbf{SÍ (2 \textless= 10)} & ``Encontré el par: 2'' \\
+1 (Fin) & \textbf{4} & \textbf{1} & - & - \\
+\emph{(\ldots)} & \emph{\ldots{}} & \emph{\ldots{}} & \emph{\ldots{}} &
+\emph{``Encontré el par: 4, 6, 8''} \\
+Última & 10 & 4 & \textbf{SÍ (10 \textless= 10)} & ``Encontré el par:
+10'' \\
+Ú. (Fin) & \textbf{12} & \textbf{5} & - & - \\
+Salida & 12 & 5 & \textbf{NO (12 \textless= 10)} & ``Total de pares:
+5'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio MIENTRAS 3: Lectura con valor centinela
+(``SALIR'')}\label{ejercicio-mientras-3-lectura-con-valor-centinela-salir}
+
+\textbf{Descripción:} Recibir palabras de forma continua hasta que el
+usuario ingrese el término \texttt{"SALIR"}, momento en el cual se
+interrumpe la repetición.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER palabra
+    MIENTRAS palabra != "SALIR" HACER
+        IMPRIMIR "Procesando: " + palabra
+        LEER palabra
+    FIN MIENTRAS
+    IMPRIMIR "Proceso finalizado"
+FIN
+\end{verbatim}
+
+\textbf{Prueba de escritorio (ingreso de ``Hola'' y posteriormente
+``SALIR''):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{palabra}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición (\texttt{!=\ "SALIR"})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \textbf{``Hola''} & - & \emph{Esperando texto} \\
+1 & ``Hola'' & \textbf{SÍ (``Hola'' != ``SALIR'')} & ``Procesando:
+Hola'' \\
+1 (Fin) & \textbf{``SALIR''} & - & \emph{Esperando texto} \\
+2 & ``SALIR'' & \textbf{NO (``SALIR'' != ``SALIR'' es Falso)} &
+\emph{Sale del ciclo} \\
+Salida & ``SALIR'' & - & ``Proceso finalizado'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.2 El ciclo HACER MIENTRAS (bucle
+Do-While)}\label{el-ciclo-hacer-mientras-bucle-do-while}
+
+Evalúa la condición al \textbf{final} del bloque: -
+\textbf{Comportamiento:} Ejecuta las instrucciones al menos una vez
+antes de verificar si debe repetir el ciclo. - \textbf{Caso de uso:}
+Validación de datos de entrada y despliegue recurrente de menús
+interactivos.
+
+\subsubsection{Ejercicio HACER MIENTRAS 1: Validación de calificación en
+rango (0 a
+10)}\label{ejercicio-hacer-mientras-1-validaciuxf3n-de-calificaciuxf3n-en-rango-0-a-10}
+
+\textbf{Descripción:} Solicitar una calificación numérica y volver a
+pedirla mientras el valor ingresado se encuentre fuera del rango
+permitido (0 a 10).
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    HACER
+        IMPRIMIR "Ingresa una calificación (0 a 10):"
+        LEER calificacion
+    MIENTRAS calificacion < 0 O calificacion > 10
+    IMPRIMIR "Calificación válida guardada"
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-16}
+
+\textbf{Prueba de escritorio (entradas: -5, luego 15, y finalmente 8):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2083}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Acción
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{calificacion}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición (\texttt{\textless{}\ 0\ O\ \textgreater{}\ 10})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & Leer & \textbf{-5} & \textbf{SÍ (-5 \textless{} 0 es Verdadero)} &
+``Ingresa calificación\ldots{}'' \\
+2 & Leer & \textbf{15} & \textbf{SÍ (15 \textgreater{} 10 es Verdadero)}
+& ``Ingresa calificación\ldots{}'' \\
+3 & Leer & \textbf{8} & \textbf{NO (Falso, valor válido)} & ``Ingresa
+calificación\ldots{}'' \\
+Salida & Imprimir & 8 & - & ``Calificación válida'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio HACER MIENTRAS 2: Menú interactivo de
+opciones}\label{ejercicio-hacer-mientras-2-menuxfa-interactivo-de-opciones}
+
+\textbf{Descripción:} Desplegar un menú con tres opciones y reiterar la
+presentación hasta que el usuario elija la opción de salida (3).
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    HACER
+        IMPRIMIR "1. Sumar"
+        IMPRIMIR "2. Restar"
+        IMPRIMIR "3. Salir"
+        LEER opcion
+    MIENTRAS opcion != 3
+    IMPRIMIR "Apagando sistema"
+FIN
+\end{verbatim}
+
+\input{contenido/diagramas/diagrama-17}
+
+\textbf{Prueba de escritorio (selección de opción 1 y luego 3):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2174}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1739}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2174}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2174}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1739}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla (Menú)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{opcion}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condición (\texttt{!=\ 3})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción lógica
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & ``1. Sumar, 2. Restar, 3. Salir'' & \textbf{1} & \textbf{SÍ (1 !=
+3)} & \emph{Retorna a mostrar el menú} \\
+2 & ``1. Sumar, 2. Restar, 3. Salir'' & \textbf{3} & \textbf{NO (3 != 3
+es Falso)} & \emph{Termina el ciclo} \\
+Salida & ``Apagando sistema'' & 3 & - & \emph{Finaliza} \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio HACER MIENTRAS 3: Adivinar un número
+secreto}\label{ejercicio-hacer-mientras-3-adivinar-un-nuxfamero-secreto}
+
+\textbf{Descripción:} Solicitar intentos numéricos al usuario de forma
+continua hasta que coincida con el número secreto predefinido (7).
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    secreto = 7
+    HACER
+        IMPRIMIR "Adivina el número secreto:"
+        LEER intento
+    MIENTRAS intento != secreto
+    IMPRIMIR "¡Felicidades, ganaste!"
+FIN
+\end{verbatim}
+
+\textbf{Prueba de escritorio (intentos: 5 y luego 7):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cclcc@{}}
+\toprule\noalign{}
+Vuelta & \texttt{secreto} & Pantalla & \texttt{intento} & Condición
+(\texttt{!=\ secreto}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & 7 & - & - & - \\
+1 & 7 & ``Adivina el número:'' & \textbf{5} & \textbf{SÍ (5 != 7)} \\
+2 & 7 & ``Adivina el número:'' & \textbf{7} & \textbf{NO (7 != 7 es
+Falso)} \\
+Salida & 7 & ``¡Felicidades, ganaste!'' & 7 & - \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.3 El ciclo PARA (bucle
+For)}\label{el-ciclo-para-bucle-for}
+
+Se utiliza cuando se conoce con exactitud el número de iteraciones
+requeridas, integrando la inicialización, la condición de parada y el
+incremento en una sola estructura de control.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Símbolo en DFD:} Hexágono alargado o bloque de control
+  \texttt{\{\{\ \}\}} que especifica la variable iteradora, el rango y
+  el paso.
+\item
+  \textbf{Sintaxis en pseudocódigo:}
+  \texttt{PARA\ variable\ =\ inicio\ HASTA\ fin\ CON\ PASO\ valor\ HACER}.
+\end{itemize}
+
+\subsubsection{Ejercicio FOR 1: Conteo ascendente del 1 al
+10}\label{ejercicio-for-1-conteo-ascendente-del-1-al-10}
+
+\textbf{Descripción:} Imprimir en orden progresivo los números enteros
+del 1 al 10 utilizando un paso de incremento unitario.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    PARA i = 1 HASTA 10 CON PASO 1 HACER
+        IMPRIMIR "El número actual es: " + i
+    FIN PARA
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-18}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cccl@{}}
+\toprule\noalign{}
+Vuelta & Variable \texttt{i} (Automática) & Condición implícita &
+Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{1} & SÍ (1 \textless= 10) & ``El número actual es: 1'' \\
+2 & \textbf{2} & SÍ (2 \textless= 10) & ``El número actual es: 2'' \\
+\emph{(\ldots)} & \emph{\ldots{}} & \emph{\ldots{}} & \emph{\ldots{}} \\
+10 & \textbf{10} & SÍ (10 \textless= 10) & ``El número actual es:
+10'' \\
+Salida & 11 & NO (11 \textless= 10 es Falso) & \emph{Fin del
+programa} \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio FOR 2: Cuenta regresiva
+descendente}\label{ejercicio-for-2-cuenta-regresiva-descendente}
+
+\textbf{Descripción:} Generar una cuenta regresiva del 10 al 1 aplicando
+un paso negativo de \texttt{-1}, finalizando con un mensaje de despegue.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    PARA i = 10 HASTA 1 CON PASO -1 HACER
+        IMPRIMIR "Lanzamiento en... " + i
+    FIN PARA
+    IMPRIMIR "¡Despegue!"
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-19}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cccl@{}}
+\toprule\noalign{}
+Vuelta & Variable \texttt{i} & Condición implícita & Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{10} & SÍ (10 \textgreater= 1) & ``Lanzamiento en\ldots{}
+10'' \\
+2 & \textbf{9} & SÍ (9 \textgreater= 1) & ``Lanzamiento en\ldots{}
+9'' \\
+\emph{(\ldots)} & \emph{\ldots{}} & \emph{\ldots{}} & \emph{\ldots{}} \\
+10 & \textbf{1} & SÍ (1 \textgreater= 1) & ``Lanzamiento en\ldots{}
+1'' \\
+Salida & 0 & NO (0 \textgreater= 1 es Falso) & ``¡Despegue!'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio FOR 3: Múltiplos de 5 con paso
+modificado}\label{ejercicio-for-3-muxfaltiplos-de-5-con-paso-modificado}
+
+\textbf{Descripción:} Imprimir la serie numérica de múltiplos de 5 desde
+el 5 hasta el 50 mediante un incremento de 5 en cada iteración.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    PARA iterador = 5 HASTA 50 CON PASO 5 HACER
+        IMPRIMIR "Valor: " + iterador
+    FIN PARA
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-20}
+
+\textbf{Prueba de escritorio:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ccccl@{}}
+\toprule\noalign{}
+Vuelta & \texttt{iterador} & Salto (+5) & Condición
+(\texttt{\textless{}=\ 50}) & Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{5} & +5 -\textgreater{} 10 & SÍ & ``Valor: 5'' \\
+2 & \textbf{10} & +5 -\textgreater{} 15 & SÍ & ``Valor: 10'' \\
+\emph{(\ldots)} & \emph{\ldots{}} & \emph{\ldots{}} & \emph{\ldots{}} &
+\emph{\ldots{}} \\
+10 & \textbf{50} & +5 -\textgreater{} 55 & SÍ & ``Valor: 50'' \\
+Salida & 55 & - & NO & \emph{Fin del ciclo} \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio FOR 4: Sumatoria acumulativa de 1 a
+N}\label{ejercicio-for-4-sumatoria-acumulativa-de-1-a-n}
+
+\textbf{Descripción:} Sumar los números enteros consecutivos desde 1
+hasta un valor límite \texttt{N} definido por el usuario, empleando una
+variable acumuladora.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER numero_limite
+    suma_total = 0
+    PARA i = 1 HASTA numero_limite CON PASO 1 HACER
+        suma_total = suma_total + i
+    FIN PARA
+    IMPRIMIR "La sumatoria total es: " + suma_total
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-21}
+
+\textbf{Prueba de escritorio (sumando hasta N = 3):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}cccccl@{}}
+\toprule\noalign{}
+Vuelta & \texttt{limite} & \texttt{i} & \texttt{suma\_total} & Condición
+& Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \textbf{3} & - & 0 & - & \emph{Esperando N} \\
+1 & 3 & \textbf{1} & \textbf{1} (0+1) & SÍ (1\textless=3) &
+\emph{Operación en memoria} \\
+2 & 3 & \textbf{2} & \textbf{3} (1+2) & SÍ (2\textless=3) &
+\emph{Operación en memoria} \\
+3 & 3 & \textbf{3} & \textbf{6} (3+3) & SÍ (3\textless=3) &
+\emph{Operación en memoria} \\
+Salida & 3 & 4 & 6 & NO (4\textless=3) & ``La sumatoria total es: 6'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio FOR 5: Búsqueda del valor máximo en
+lote}\label{ejercicio-for-5-buxfasqueda-del-valor-muxe1ximo-en-lote}
+
+\textbf{Descripción:} Leer 5 registros de temperatura y determinar cuál
+fue el valor máximo observado, actualizando la variable \texttt{maximo}
+mediante una comparación en cada iteración.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    maximo = -9999
+    PARA dia = 1 HASTA 5 CON PASO 1 HACER
+        LEER temperatura
+        SI temperatura > maximo ENTONCES
+            maximo = temperatura
+        FIN SI
+    FIN PARA
+    IMPRIMIR "La temperatura máxima de la semana fue: " + maximo
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-22}
+
+\textbf{Prueba de escritorio (temperaturas: 25, 28, 22, 30, 29):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Vuelta
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{dia}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{maximo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\texttt{temperatura}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+¿Es \textgreater{} máximo?
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Nuevo máximo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & - & -9999 & - & - & - \\
+1 & 1 & -9999 & \textbf{25} & SÍ (25 \textgreater{} -9999) &
+\textbf{25} \\
+2 & 2 & 25 & \textbf{28} & SÍ (28 \textgreater{} 25) & \textbf{28} \\
+3 & 3 & 28 & \textbf{22} & NO (22 \textless= 28) & 28 \\
+4 & 4 & 28 & \textbf{30} & SÍ (30 \textgreater{} 28) & \textbf{30} \\
+5 & 5 & 30 & \textbf{29} & NO (29 \textless= 30) & 30 \\
+Salida & 6 & 30 & - & (Fin) & ``La temperatura máxima\ldots{} 30'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio FOR 6: Tabla de
+multiplicar}\label{ejercicio-for-6-tabla-de-multiplicar}
+
+\textbf{Descripción:} Solicitar un número entero y mostrar su tabla de
+multiplicar del 1 al 10, calculando y formateando el producto en cada
+paso.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER tabla_del
+    PARA multiplicador = 1 HASTA 10 CON PASO 1 HACER
+        resultado = tabla_del * multiplicador
+        IMPRIMIR tabla_del + " x " + multiplicador + " = " + resultado
+    FIN PARA
+FIN
+\end{verbatim}
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-23}
+
+\textbf{Prueba de escritorio (tabla del 7):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ccccl@{}}
+\toprule\noalign{}
+Vuelta & \texttt{tabla\_del} & \texttt{multiplicador} &
+\texttt{resultado} & Pantalla \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \textbf{7} & - & - & \emph{Esperando número} \\
+1 & 7 & \textbf{1} & \textbf{7} & ``7 x 1 = 7'' \\
+2 & 7 & \textbf{2} & \textbf{14} & ``7 x 2 = 14'' \\
+\emph{(\ldots)} & \emph{\ldots{}} & \emph{\ldots{}} & \emph{\ldots{}} &
+\emph{\ldots{}} \\
+10 & 7 & \textbf{10} & \textbf{70} & ``7 x 10 = 70'' \\
+Salida & 7 & 11 & - & \emph{Fin del ciclo} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.4 Ejercicios combinados con múltiples
+estructuras}\label{ejercicios-combinados-con-muxfaltiples-estructuras}
+
+En aplicaciones reales es común secuenciar o anidar distintos tipos de
+ciclos y condicionales según los requerimientos del problema.
+
+\subsubsection{Ejercicio Combinado 1: Validación previa con lectura
+múltiple (Hacer Mientras +
+Mientras)}\label{ejercicio-combinado-1-validaciuxf3n-previa-con-lectura-muxfaltiple-hacer-mientras-mientras}
+
+\textbf{Descripción:} Validar que la cantidad de alumnos a procesar sea
+estrictamente mayor a cero y, posteriormente, solicitar la calificación
+individual de cada uno mediante un ciclo de control.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    HACER
+        IMPRIMIR "Ingresa la cantidad de alumnos (mayor a 0):"
+        LEER n_alumnos
+    MIENTRAS n_alumnos <= 0
+    
+    contador = 1
+    MIENTRAS contador <= n_alumnos HACER
+        IMPRIMIR "Ingresa la calificación del alumno " + contador
+        LEER calif
+        contador = contador + 1
+    FIN MIENTRAS
+    IMPRIMIR "Todas las calificaciones registradas."
+FIN
+\end{verbatim}
+
+\textbf{Prueba de escritorio (entradas: -2, luego 2, y calificaciones 8
+y 9):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Variable / Acción
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Valor / Condición
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Val 1 & \texttt{n\_alumnos} & \textbf{-2} (Inválido: -2 \textless= 0) &
+``Ingresa cantidad de alumnos\ldots{}'' \\
+Val 2 & \texttt{n\_alumnos} & \textbf{2} (Válido: 2 \textless= 0 es
+Falso) & ``Ingresa cantidad de alumnos\ldots{}'' \\
+Ciclo 1 & \texttt{contador} & 1 & ``Ingresa la calificación del alumno
+1'' \\
+Ciclo 1 & \texttt{calif} & \textbf{8} & - \\
+Ciclo 2 & \texttt{contador} & 2 & ``Ingresa la calificación del alumno
+2'' \\
+Ciclo 2 & \texttt{calif} & \textbf{9} & - \\
+Fin & Salida & - & ``Todas las calificaciones registradas.'' \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio Combinado 2: Bucle interactivo con fases fijas
+(Mientras +
+Para)}\label{ejercicio-combinado-2-bucle-interactivo-con-fases-fijas-mientras-para}
+
+\textbf{Descripción:} Recibir palabras de forma continua hasta que se
+ingrese \texttt{"FIN"}. Por cada palabra procesada, ejecutar un ciclo
+interno fijo de 3 pasos que emite asteriscos de confirmación.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    LEER palabra
+    MIENTRAS palabra != "FIN" HACER
+        IMPRIMIR "Analizando: " + palabra
+        PARA fase = 1 HASTA 3 CON PASO 1 HACER
+            IMPRIMIR "*"
+        FIN PARA
+        IMPRIMIR "Análisis completado."
+        LEER palabra
+    FIN MIENTRAS
+FIN
+\end{verbatim}
+
+\textbf{Prueba de escritorio (ingreso de ``Hola'' y luego ``FIN''):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Valor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mientras & \texttt{palabra} & \textbf{``Hola''} & \emph{Esperando
+texto} \\
+Mientras & Condición & SÍ (``Hola'' != ``FIN'') & ``Analizando:
+Hola'' \\
+Para & \texttt{fase} 1 & 1 & ``*'' \\
+Para & \texttt{fase} 2 & 2 & ``*'' \\
+Para & \texttt{fase} 3 & 3 & ``*'' \\
+Para & Fin & - & ``Análisis completado.'' \\
+Mientras & \texttt{palabra} & \textbf{``FIN''} & \emph{Esperando
+texto} \\
+Mientras & Condición & NO (Término del ciclo) & \emph{Finaliza el
+programa} \\
+\end{longtable}
+}
+
+\subsubsection{Ejercicio Combinado 3: Menú interactivo con secuencias
+ascendente y descendente (Hacer Mientras +
+Para)}\label{ejercicio-combinado-3-menuxfa-interactivo-con-secuencias-ascendente-y-descendente-hacer-mientras-para}
+
+\textbf{Descripción:} Desplegar un menú que permite contar del 1 al 3
+(opción 1), del 3 al 1 (opción 2) o salir del sistema (opción 3),
+empleando condicionales anidados dentro de una estructura repetitiva.
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    HACER
+        IMPRIMIR "1. Subir, 2. Bajar, 3. Salir"
+        LEER opc
+        SI opc == 1 ENTONCES
+            PARA i = 1 HASTA 3 CON PASO 1 HACER
+                IMPRIMIR "Subiendo... " + i
+            FIN PARA
+        SINO
+            SI opc == 2 ENTONCES
+                PARA i = 3 HASTA 1 CON PASO -1 HACER
+                    IMPRIMIR "Bajando... " + i
+                FIN PARA
+            FIN SI
+        FIN SI
+    MIENTRAS opc != 3
+    IMPRIMIR "Apagado"
+FIN
+\end{verbatim}
+
+\textbf{Prueba de escritorio (opción 1 y luego opción 3):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Acción / Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Valor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Menú & \texttt{opc} & \textbf{1} & ``1. Subir, 2. Bajar, 3. Salir'' \\
+Cond & Evaluar opción 1 & SÍ (1 == 1) & - \\
+Para 1 & \texttt{i} (Vueltas 1, 2, 3) & 1..3 & ``Subiendo\ldots{} 1'',
+``Subiendo\ldots{} 2'', ``Subiendo\ldots{} 3'' \\
+Bucle & Retorno del menú & SÍ (1 != 3) & \emph{Vuelve al menú
+principal} \\
+Menú & \texttt{opc} & \textbf{3} & ``1. Subir, 2. Bajar, 3. Salir'' \\
+Cond & Evaluar opción 3 & NO (a 1 y a 2) & - \\
+Bucle & Retorno del menú & NO (3 != 3 es Falso) & ``Apagado'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{6. Clasificación de errores en la
+programación}\label{clasificaciuxf3n-de-errores-en-la-programaciuxf3n}
+
+Al diseñar e implementar algoritmos se presentan distintos tipos de
+errores según la etapa en la que se manifiestan y la herramienta capaz
+de detectarlos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Errores de sintaxis:} Ocurren al infringir las reglas
+  gramaticales o de estructura del lenguaje (por ejemplo, omitir el
+  cierre de comillas o escribir incorrectamente una palabra reservada
+  como \texttt{IMPRIMR}). El compilador o intérprete los identifica
+  antes de la ejecución y señala la línea donde se originan.
+\item
+  \textbf{Errores de ejecución (Runtime errors):} Aparecen cuando las
+  instrucciones son sintácticamente válidas, pero solicitan operaciones
+  no permitidas durante el funcionamiento del programa, tales como
+  intentar dividir entre cero o acceder a un recurso no disponible.
+\item
+  \textbf{Errores lógicos:} Se presentan cuando el programa se ejecuta
+  sin interrupciones pero entrega resultados incorrectos debido a una
+  falla en el razonamiento, las fórmulas o el flujo de control. Las
+  herramientas automáticas no pueden detectarlos directamente, por lo
+  que su prevención y corrección dependen de la prueba de escritorio y
+  del análisis del desarrollador.
+\end{enumerate}
+
+\subsection{6.1 Tiempo de compilación vs.~tiempo de
+ejecución}\label{tiempo-de-compilaciuxf3n-vs.-tiempo-de-ejecuciuxf3n}
+
+Para comprender la naturaleza de estos errores es útil distinguir las
+dos etapas principales en el ciclo de un programa:
+
+\begin{itemize}
+\item
+  \textbf{Tiempo de compilación (Compile Time):} Fase previa en la que
+  el compilador analiza el código fuente, valida su sintaxis y lo
+  traduce a instrucciones ejecutables. Los errores de sintaxis se
+  identifican exclusivamente en este momento, impidiendo la generación
+  del programa final hasta ser corregidos.
+\item
+  \textbf{Tiempo de ejecución (Run Time):} Fase en la que el programa
+  compilado o interpretado se ejecuta en la memoria de la computadora,
+  procesa entradas y genera salidas. En esta etapa se manifiestan los
+  errores de ejecución y se observan las consecuencias de los errores
+  lógicos.
+\end{itemize}
+
+\subsection{6.2 Errores lógicos y de control comunes en
+diagramas}\label{errores-luxf3gicos-y-de-control-comunes-en-diagramas}
+
+Durante el diseño de algoritmos iterativos suelen presentarse
+situaciones específicas que conviene anticipar:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Bucle infinito:} Se produce cuando la condición de salida
+  depende de una variable cuyo valor nunca cambia dentro del ciclo (por
+  ejemplo, al omitir el incremento
+  \texttt{contador\ =\ contador\ +\ 1}), provocando que la condición sea
+  siempre verdadera.
+\item
+  \textbf{Ciclo inactivo:} Ocurre en estructuras \texttt{MIENTRAS}
+  cuando la variable de control se inicializa con un valor que hace
+  falsa la condición de entrada desde el primer momento, omitiendo el
+  bloque por completo.
+\item
+  \textbf{Error por desplazamiento de un paso (Off-by-One):} Sucede al
+  confundir operadores como \texttt{\textless{}} y
+  \texttt{\textless{}=}, lo que ocasiona que el ciclo realice una
+  iteración más o una menos de las previstas.
+\item
+  \textbf{División por cero no controlada:} Ocurre cuando se calcula un
+  promedio o tasa sin validar previamente si el divisor es cero (por
+  ejemplo, con \texttt{N\ =\ 0}), lo cual genera una interrupción de
+  ejecución si no se añade una verificación previa.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{7. Ejercicio Integrador: Cajero automático
+básico}\label{ejercicio-integrador-cajero-automuxe1tico-buxe1sico}
+
+A continuación se presenta un ejercicio que combina las principales
+estructuras abordadas: ciclo \texttt{HACER\ MIENTRAS} para la navegación
+del menú, condicionales anidados para la validación de fondos y ciclo
+\texttt{PARA} para la rutina final de desconexión.
+
+\textbf{Planteamiento:} Diseñar un sistema de cajero automático con un
+saldo inicial de 1000 unidades monetarias que cumpla con los siguientes
+puntos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Desplegar un menú interactivo continuo con tres opciones: 1. Consultar
+  saldo, 2. Realizar retiro, 3. Salir.
+\item
+  Al seleccionar retiro, solicitar el monto y verificar que no exceda el
+  saldo disponible; si los fondos son suficientes, actualizar el saldo,
+  y en caso contrario, mostrar un mensaje de fondos insuficientes.
+\item
+  Al elegir la opción de salida (3), ejecutar un ciclo de 3 pasos que
+  simule la desconexión del servidor y emitir un mensaje de
+  agradecimiento.
+\end{enumerate}
+
+\textbf{Pseudocódigo:}
+
+\begin{verbatim}
+INICIO
+    saldo = 1000
+    HACER
+        IMPRIMIR "1. Consultar"
+        IMPRIMIR "2. Retirar"
+        IMPRIMIR "3. Salir"
+        LEER opcion
+        
+        SI opcion == 1 ENTONCES
+            IMPRIMIR "Tu saldo es: " + saldo
+        SINO
+            SI opcion == 2 ENTONCES
+                IMPRIMIR "Ingresa monto a retirar:"
+                LEER retiro
+                SI retiro <= saldo ENTONCES
+                    saldo = saldo - retiro
+                    IMPRIMIR "Retiro exitoso. Nuevo saldo: " + saldo
+                SINO
+                    IMPRIMIR "Fondos insuficientes"
+                FIN SI
+            FIN SI
+        FIN SI
+    MIENTRAS opcion != 3
+    
+    IMPRIMIR "Iniciando protocolo de desconexión..."
+    PARA fase = 1 HASTA 3 CON PASO 1 HACER
+        IMPRIMIR "Cerrando fase de seguridad: " + fase
+    FIN PARA
+    IMPRIMIR "Gracias por usar nuestro banco"
+FIN
+\end{verbatim}
+
+\clearpage
+
+\textbf{Diagrama de flujo:}
+
+\input{contenido/diagramas/diagrama-24}
+
+\textbf{Prueba de escritorio (intento de retiro de 1500, retiro de 200,
+consulta de saldo y salida):}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2778}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2778}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Paso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción lógica / Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Valor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pantalla (Salida)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inicio & \texttt{saldo} inicial & 1000 & - \\
+\textbf{B1} & \textbf{--- Menú principal ---} & - & ``1. Consultar, 2.
+Retirar, 3. Salir'' \\
+Leer 1 & \texttt{opcion} & \textbf{2} & \emph{Esperando opción} \\
+Cond & ¿Opción 2? & SÍ & ``Ingresa monto a retirar:'' \\
+Leer & \texttt{retiro} & \textbf{1500} & \emph{Esperando monto} \\
+Cond & ¿\texttt{retiro} \textless= \texttt{saldo}? (1500 \textless=
+1000) & NO & ``Fondos insuficientes'' \\
+Eval & ¿\texttt{opcion} != 3? & SÍ & \emph{Retorna al menú} \\
+\textbf{B2} & \textbf{--- Menú principal ---} & - & ``1. Consultar, 2.
+Retirar, 3. Salir'' \\
+Leer 2 & \texttt{opcion} & \textbf{2} & \emph{Esperando opción} \\
+Cond & ¿Opción 2? & SÍ & ``Ingresa monto a retirar:'' \\
+Leer & \texttt{retiro} & \textbf{200} & \emph{Esperando monto} \\
+Cond & ¿\texttt{retiro} \textless= \texttt{saldo}? (200 \textless= 1000)
+& SÍ & \emph{Operación en memoria} \\
+Proc & \texttt{saldo} (1000 - 200) & \textbf{800} & ``Retiro exitoso.
+Nuevo saldo: 800'' \\
+Eval & ¿\texttt{opcion} != 3? & SÍ & \emph{Retorna al menú} \\
+\textbf{B3} & \textbf{--- Menú principal ---} & - & ``1. Consultar, 2.
+Retirar, 3. Salir'' \\
+Leer 3 & \texttt{opcion} & \textbf{1} & \emph{Esperando opción} \\
+Cond & ¿Opción 1? & SÍ & ``Tu saldo es: 800'' \\
+Eval & ¿\texttt{opcion} != 3? & SÍ & \emph{Retorna al menú} \\
+\textbf{B4} & \textbf{--- Menú principal ---} & - & ``1. Consultar, 2.
+Retirar, 3. Salir'' \\
+Leer 4 & \texttt{opcion} & \textbf{3} & \emph{Esperando opción} \\
+Eval & ¿\texttt{opcion} != 3? & NO & \emph{Concluye el menú} \\
+Salida & Fin del menú & - & ``Iniciando protocolo de
+desconexión\ldots{}'' \\
+Para & \texttt{fase} = 1 & 1 & ``Cerrando fase de seguridad: 1'' \\
+Para & \texttt{fase} = 2 & 2 & ``Cerrando fase de seguridad: 2'' \\
+Para & \texttt{fase} = 3 & 3 & ``Cerrando fase de seguridad: 3'' \\
+Fin & Mensaje final & - & ``Gracias por usar nuestro banco'' \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{8. Recomendaciones y siguientes
+pasos}\label{recomendaciones-y-siguientes-pasos}
+
+El diseño de algoritmos parte de instrucciones elementales y avanza
+hacia estructuras organizadas mediante reglas claras de flujo. Para
+consolidar esta práctica, se sugieren las siguientes recomendaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Herramientas de diagramación:} Para diagramar de forma digital
+  pueden utilizarse herramientas como \textbf{yEd Graph Editor},
+  \textbf{Draw.io} o \textbf{Lucidchart}, así como el dibujo tradicional
+  en papel manteniendo la consistencia de los símbolos estándar.
+\item
+  \textbf{Verificación constante:} Aplicar la prueba de escritorio a
+  cada solución permite detectar inconsistencias lógicas y evaluar casos
+  límite antes de pasar a la codificación.
+\item
+  \textbf{Estructuras de datos colectivas:} Tras dominar variables
+  simples, el siguiente paso comprende el uso de \textbf{arreglos
+  (arrays)} o \textbf{listas}, los cuales permiten almacenar y procesar
+  conjuntos múltiples de datos bajo un mismo identificador.
+\item
+  \textbf{Modularidad:} Conforme aumenta la complejidad de los
+  programas, las operaciones repetitivas o extensas se organizan en
+  subprocesos independientes (\textbf{funciones y métodos}), facilitando
+  el mantenimiento y la reutilización del código.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{9. Referencias bibliográficas de
+consulta}\label{referencias-bibliogruxe1ficas-de-consulta}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Joyanes Aguilar, L. (2008).} \emph{Fundamentos de
+  programación: Algoritmos, estructuras de datos y objetos} (4.ª ed.).
+  McGraw-Hill Interamericana.
+\item
+  \textbf{Cairó Battistutti, O. (2005).} \emph{Metodología de la
+  programación: Algoritmos, diagramas de flujo y programas} (3.ª ed.).
+  Alfaomega.
+\item
+  \textbf{Cormen, T. H., Leiserson, C. E., Rivest, R. L., \& Stein, C.
+  (2009).} \emph{Introduction to Algorithms} (3.ª ed.). MIT Press.
+\end{enumerate}
