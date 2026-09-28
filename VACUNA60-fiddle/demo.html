@@ -1,0 +1,44 @@
+<div class="app">
+  <header class="top">
+    <div><b>VACUNA<span>//60</span></b><small>México 2026 · entrenamiento de una hora</small></div>
+    <div class="clock" id="clock">60:00</div>
+  </header>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="stats"><span>XP <b id="xp">0</b></span><span>Dominio <b id="mastery">0%</b></span><span>Racha <b id="streak">0</b></span><span id="phase">Listo</span></div>
+
+  <section class="hero" id="hero">
+    <p class="eyebrow">APRENDE CON SENTIDO</p>
+    <h1>Memoriza decisiones clínicas, no listas sueltas.</h1>
+    <p>Usa la lógica <b>ECER</b>: Edad y antecedentes → Condición → Excepciones → Registrar.</p>
+    <button class="primary" id="start">Iniciar 60 minutos</button>
+    <button id="reset">Reiniciar</button>
+  </section>
+
+  <nav id="nav">
+    <button data-view="map" class="active">Mapa</button>
+    <button data-view="cards">Tarjetas</button>
+    <button data-view="cases">Casos</button>
+    <button data-view="exam">Examen</button>
+  </nav>
+
+  <main>
+    <section id="map" class="view active">
+      <div class="grid">
+        <article class="card wide"><h2>Algoritmo ECER</h2><div class="ecer"><div><b>E</b>Edad + antecedente</div><div><b>C</b>Condición y riesgo</div><div><b>E</b>Excepciones</div><div><b>R</b>Registrar y rescatar</div></div></article>
+        <article class="card"><h2>TICoR</h2><p><b>T</b>dpa · <b>I</b>nfluenza · <b>Co</b>vid · VS<b>R</b></p><small>Embarazo: protección materna y del recién nacido.</small></article>
+        <article class="card"><h2>PICoT</h2><p><b>P</b>neumococo · <b>I</b>nfluenza · <b>Co</b>vid · <b>T</b>d</p><small>Persona mayor: pulmón, temporada y tétanos.</small></article>
+        <article class="card"><h2>Vivas juntas o 4</h2><p>Vacunas vivas parenterales: el mismo día o separadas al menos 4 semanas.</p></article>
+        <article class="card"><h2>Rescate</h2><p>Un esquema interrumpido <b>no se reinicia</b>; se completa respetando intervalos.</p></article>
+        <article class="card wide"><h2>Ruta de los 60 minutos</h2><ol><li>0–8: mapa y anclas.</li><li>8–25: tarjetas de recuperación activa.</li><li>25–45: casos clínicos.</li><li>45–60: examen y explicación en voz alta.</li></ol></article>
+      </div>
+    </section>
+
+    <section id="cards" class="view"><article class="card study"><span class="chip" id="cardTag"></span><h2 id="question"></h2><div class="answer" id="answer"></div><div class="actions"><button class="primary" id="reveal">Mostrar respuesta</button><button id="hard">Difícil</button><button id="know">La sé</button></div></article></section>
+
+    <section id="cases" class="view"><article class="card study"><span class="chip">Caso clínico</span><h2 id="caseText"></h2><div id="options"></div><div id="feedback"></div><button id="nextCase">Siguiente caso</button></article></section>
+
+    <section id="exam" class="view"><article class="card"><h2>Examen final</h2><p>Responde 12 preguntas. Meta: 85% o más.</p><div id="examBox"></div><button class="primary" id="newExam">Nuevo examen</button></article></section>
+  </main>
+
+  <footer>Basado en PRONAM Vacunación a lo largo de la vida, 2.ª ed. 2026; Lineamientos PVU 2026; enmienda mexicana de sarampión del 18-feb-2026; y resumen OMS actualizado dic-2025. Material didáctico: confirmar siempre el lineamiento vigente y el producto disponible.</footer>
+</div>
