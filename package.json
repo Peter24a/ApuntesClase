@@ -1,0 +1,11 @@
+{
+  "name": "vacuna60-online",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.5"
+  }
+}
