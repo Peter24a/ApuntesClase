@@ -1,0 +1,44 @@
+name: Publicar VACUNA60
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'VACUNA60/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Preparar sitio
+        run: |
+          mkdir -p public
+          cp VACUNA60/index.html public/index.html
+          touch public/.nojekyll
+      - name: Subir sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
