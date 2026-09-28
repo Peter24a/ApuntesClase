@@ -1,0 +1,31 @@
+name: Deploy VACUNA60
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "VACUNA60/**"
+      - ".github/workflows/deploy-vacuna60.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy VACUNA60
+        id: deploy
+        uses: shipstatic/action@v2
+        with:
+          path: ./VACUNA60
+
+      - name: Show public URL
+        run: |
+          echo "PUBLIC_URL=${{ steps.deploy.outputs.url }}"
+          echo "EXPIRES=${{ steps.deploy.outputs.expires }}"
