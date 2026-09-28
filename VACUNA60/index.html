@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>VACUNA//60</title>
+<style>
+:root{--bg:#07111f;--card:#0d1b2a;--line:#20364a;--txt:#eef6ff;--muted:#9fb2c5;--a:#35d6c6;--b:#5cb7ff;--ok:#49d17d;--bad:#ff6b6b;--warn:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#10263c 0,#07111f 45%);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1100px;margin:auto;padding:18px}.top{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1100px;margin:auto;padding:12px 18px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.brand{font-weight:900;letter-spacing:.08em}.brand span{color:var(--a)}
+.timer{font-weight:900;font-size:21px}.bar{height:8px;background:#13283a;border-radius:999px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:.3s}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.pill{border:1px solid var(--line);padding:5px 9px;border-radius:999px;color:var(--muted);font-size:13px}
+.hero{padding:28px 0 14px}.hero h1{font-size:clamp(34px,7vw,72px);margin:0;line-height:.95}.hero p{color:var(--muted);max-width:780px;font-size:17px;line-height:1.55}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{grid-column:span 12;background:linear-gradient(180deg,#0e1e2f,#0a1725);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 14px 40px rgba(0,0,0,.18)}
+@media(min-width:800px){.half{grid-column:span 6}.third{grid-column:span 4}.two{grid-column:span 8}.one{grid-column:span 4}}
+h2,h3{margin-top:0}.muted{color:var(--muted)}.btn{border:1px solid #2a5269;background:#10273a;color:white;padding:11px 14px;border-radius:12px;font-weight:800}.btn:hover{transform:translateY(-1px)}.primary{background:linear-gradient(135deg,var(--a),var(--b));color:#03111a;border:0}.danger{border-color:#6b3030}.row{display:flex;gap:8px;flex-wrap:wrap}
+.nav{display:flex;gap:8px;overflow:auto;padding:8px 0 2px}.nav button{white-space:nowrap}.nav .active{background:var(--a);color:#041117;border-color:transparent}
+.screen{display:none}.screen.active{display:block}.logic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.logic div{border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center}.logic b{display:block;font-size:28px;color:var(--a)}
+@media(max-width:650px){.logic{grid-template-columns:repeat(2,1fr)}}
+.flash{min-height:310px;display:flex;flex-direction:column;justify-content:center;text-align:center}.q{font-size:clamp(23px,4vw,36px);font-weight:900}.ans{display:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-size:18px;line-height:1.55}.ans.show{display:block}
+.choice{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border-radius:12px;background:#0a1a28;color:white;border:1px solid var(--line)}.choice.ok{border-color:var(--ok);background:#0f2d23}.choice.bad{border-color:var(--bad);background:#32191d}
+.tag{display:inline-block;font-size:12px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:4px 8px;margin:2px;color:var(--muted)}
+.passport{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.passport summary{cursor:pointer;font-weight:900;font-size:18px}.facts{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}.fact{padding:10px;border-radius:12px;background:#081522;border:1px solid #173148}.fact b{color:var(--a)}
+@media(min-width:700px){.facts{grid-template-columns:1fr 1fr}}
+.casebox{font-size:18px;line-height:1.5}.feedback{display:none;padding:12px;border-radius:12px;margin-top:12px}.feedback.show{display:block}.okbox{background:#0e2c21;border:1px solid #235d46}.badbox{background:#32191d;border:1px solid #6a3030}
+.phase{border-left:4px solid var(--a);padding-left:12px;margin:12px 0}.phase small{color:var(--muted)}
+.focus body{}.focus .hero,.focus #mapExtra{display:none}.footer{color:#7890a5;font-size:12px;line-height:1.5;padding:22px 0}.source{font-size:12px;color:#8ca2b7}.lock{outline:2px solid var(--warn)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="topin">
+    <div>
+      <div class="brand">VACUNA<span>//60</span> · México 2026</div>
+      <div class="bar"><i id="timeBar"></i></div>
+      <div class="stats"><span class="pill" id="phaseTxt">Listo para iniciar</span><span class="pill">XP <b id="xp">0</b></span><span class="pill">Dominio <b id="mastery">0%</b></span><span class="pill">Racha <b id="streak">0</b></span></div>
+    </div>
+    <div class="timer" id="timer">60:00</div>
+  </div>
+</div>
+
+<main class="wrap">
+<section class="hero">
+  <h1>Memoriza por <span style="color:var(--a)">lógica</span>, no por fuerza.</h1>
+  <p>Una sesión de 60 minutos basada en decisiones clínicas: edad, riesgo, embarazo, inmunosupresión, enfermedades crónicas y exposición ocupacional. El objetivo es que puedas reconstruir el esquema aunque olvides una cifra aislada.</p>
+  <div class="row">
+    <button class="btn primary" id="startBtn">Iniciar 60 minutos</button>
+    <button class="btn" id="focusBtn">Modo concentración</button>
+    <button class="btn danger" id="resetBtn">Reiniciar progreso</button>
+  </div>
+</section>
+
+<div class="nav" id="nav">
+  <button class="btn active" data-screen="mapa">1. Mapa lógico</button>
+  <button class="btn" data-screen="flash">2. Flashcards</button>
+  <button class="btn" data-screen="casos">3. Casos</button>
+  <button class="btn" data-screen="vacunas">4. Pasaportes</button>
+  <button class="btn" data-screen="exam">5. Examen</button>
+</div>
+
+<section id="mapa" class="screen active">
+  <div class="grid">
+    <div class="card two">
+      <h2>El algoritmo ECER</h2>
+      <p class="muted">Antes de pensar en una vacuna concreta, recorre siempre estas cuatro puertas.</p>
+      <div class="logic">
+        <div><b>E</b><strong>Edad + antecedentes</strong><br><small>¿Qué ya recibió?</small></div>
+        <div><b>C</b><strong>Condición</strong><br><small>Embarazo, crónica, ocupación</small></div>
+        <div><b>E</b><strong>Excepciones</strong><br><small>Contraindicación/precaución</small></div>
+        <div><b>R</b><strong>Registrar</strong><br><small>Aplicar, documentar, rescatar</small></div>
+      </div>
+      <p class="source">PRONAM 2026: revisar edad/antecedente → riesgo → precauciones/contraindicaciones/situaciones especiales → aplicar y registrar.</p>
+    </div>
+    <div class="card one">
+      <h2>Anclas rápidas</h2>
+      <div class="phase"><b>TICoR</b><br>Tdpa · Influenza · COVID · VSR<br><small>Piensa “embarazo protege a dos”.</small></div>
+      <div class="phase"><b>PICoT</b><br>Pneumococo · Influenza · COVID · Td<br><small>Piensa “adulto mayor: pulmón + temporada + tétanos”.</small></div>
+      <div class="phase"><b>Vivas juntas o 4</b><br><small>Vivas simultáneas o separadas 4 semanas.</small></div>
+    </div>
+    <div class="card half" id="mapExtra">
+      <h2>La hora, en bloques</h2>
+      <div class="phase"><b>0–8 min</b> mapa lógico + anclas</div>
+      <div class="phase"><b>8–25 min</b> recuperación activa</div>
+      <div class="phase"><b>25–42 min</b> casos clínicos</div>
+      <div class="phase"><b>42–52 min</b> pasaportes de vacunas</div>
+      <div class="phase"><b>52–60 min</b> examen + teach-back</div>
+    </div>
+    <div class="card half">
+      <h2>Reglas que evitan memorizar listas</h2>
+      <p><span class="tag">Rescate</span> Un esquema interrumpido no se reinicia: se completa respetando intervalos.</p>
+      <p><span class="tag">Coadministración</span> Inactivadas pueden darse simultáneamente; vacunas vivas parenterales, si no son simultáneas, se separan 4 semanas.</p>
+      <p><span class="tag">Embarazo</span> Evita vacunas vivas; prioriza protección materna y del recién nacido con Tdpa, influenza, COVID y VSR según indicación.</p>
+      <p><span class="tag">Inmunosupresión</span> El tipo de vacuna importa: las vivas son el punto crítico; las no vivas suelen ser seguras aunque la respuesta pueda ser menor.</p>
+    </div>
+  </div>
+</section>
+
+<section id="flash" class="screen">
+  <div class="card flash">
+    <div class="tag" id="flashTag">recuperación activa</div>
+    <div class="q" id="flashQ"></div>
+    <div class="ans" id="flashA"></div>
+    <div class="row" style="justify-content:center;margin-top:18px">
+      <button class="btn primary" id="showAns">Mostrar respuesta</button>
+      <button class="btn" id="hardBtn">Difícil</button>
+      <button class="btn" id="goodBtn">La sé</button>
+    </div>
+  </div>
+</section>
+
+<section id="casos" class="screen">
+  <div class="grid">
+    <div class="card two">
+      <div class="tag">caso clínico</div>
+      <div class="casebox" id="caseText"></div>
+      <div id="caseChoices"></div>
+      <div class="feedback" id="caseFeedback"></div>
+      <button class="btn" id="nextCase" style="margin-top:12px">Siguiente caso</button>
+    </div>
+    <div class="card one">
+      <h3>Cómo resolver</h3>
+      <p>1) Di en voz alta <b>ECER</b>.</p>
+      <p>2) Detecta si el dato que manda es <b>edad, embarazo, inmunosupresión, cronicidad o exposición</b>.</p>
+      <p>3) Decide primero <b>tipo de vacuna</b>; después esquema.</p>
+      <p>4) Si dudas, busca una contraindicación real antes de “no vacunar”.</p>
+    </div>
+  </div>
+</section>
+
+<section id="vacunas" class="screen">
+  <div class="card">
+    <h2>Pasaportes de vacunas</h2>
+    <p class="muted">Cada ficha usa el mismo orden para que la memoria sea estructural: agente → transmisión → tipo → quién → esquema → aplicación → seguridad → situación México/internacional.</p>
+    <div id="passportList"></div>
+  </div>
+</section>
+
+<section id="exam" class="screen">
+  <div class="grid">
+    <div class="card two">
+      <h2>Examen final</h2>
+      <p class="muted">12 preguntas aleatorias. Tu meta es ≥85% sin consultar los pasaportes.</p>
+      <div id="examBox"></div>
+      <button class="btn primary" id="newExam">Generar examen</button>
+    </div>
+    <div class="card one">
+      <h3>Teach-back de 60 segundos</h3>
+      <p>Sin mirar, explica:</p>
+      <p>“Primero reviso edad y antecedentes. Después busco embarazo, inmunosupresión, cronicidad y exposición. Luego descarto contraindicaciones. Finalmente completo esquemas sin reiniciar y registro.”</p>
+      <p class="muted">Si puedes decirlo y aplicarlo a un caso nuevo, no solo memorizaste: construiste una regla.</p>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  Material de estudio. Prioriza normativa mexicana vigente y el producto disponible. Fuentes base integradas en la app: PRONAM Vacunación a lo largo de la vida, 2a ed. aprobada 30-jul-2026; Lineamientos Generales PVU 2026; Enmienda sarampión 18-feb-2026; resumen OMS actualizado dic-2025. Cuando una tabla fuente no especifica un dato, la app lo marca en lugar de inventarlo.
+</div>
+</main>
+
+<script>
+const S={xp:0,streak:0,seen:0,correct:0,running:false,left:3600,focus:false};
+try{Object.assign(S,JSON.parse(localStorage.getItem('vacuna60s')||'{}'))}catch(e){}
+function save(){localStorage.setItem('vacuna60s',JSON.stringify(S));renderStats()}
+function renderStats(){document.getElementById('xp').textContent=S.xp;document.getElementById('streak').textContent=S.streak;document.getElementById('mastery').textContent=(S.seen?Math.round(S.correct/S.seen*100):0)+'%';document.getElementById('timer').textContent=String(Math.floor(S.left/60)).padStart(2,'0')+':'+String(S.left%60).padStart(2,'0');document.getElementById('timeBar').style.width=((3600-S.left)/36)+'%';let used=3600-S.left,txt='Listo para iniciar';if(S.running){if(used<480)txt='Mapa lógico';else if(used<1500)txt='Flashcards';else if(used<2520)txt='Casos';else if(used<3120)txt='Pasaportes';else txt='Examen final'}document.getElementById('phaseTxt').textContent=txt}
+let tick=null;document.getElementById('startBtn').onclick=()=>{S.running=true;save();if(!tick)tick=setInterval(()=>{if(S.running&&S.left>0){S.left--;save()}},1000)}
+document.getElementById('focusBtn').onclick=()=>{S.focus=!S.focus;document.documentElement.classList.toggle('focus',S.focus);document.getElementById('focusBtn').textContent=S.focus?'Salir de concentración':'Modo concentración';save()}
+document.getElementById('resetBtn').onclick=()=>{if(confirm('¿Reiniciar XP, racha, tiempo y dominio?')){localStorage.removeItem('vacuna60s');location.reload()}}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(b.dataset.screen).classList.add('active')})
+
+const flashcards=[
+['Embarazo: ¿qué 4 vacunas forman TICoR?','Tdpa, Influenza, COVID-19 y VSR. La lógica es protección materna + transferencia de protección al recién nacido cuando aplica.','embarazo'],
+['Td en ≥15 años con esquema no documentado: ¿qué patrón?','3 dosis: 0, 1 y 12 meses; después refuerzo cada 10 años. No reiniciar por retrasos.','adultos'],
+['Tdpa en embarazo: ¿cuándo?','En cada embarazo desde la semana 20; preferentemente 27–36 semanas.','embarazo'],
+['VSR en México 2026: ¿quién?','Personas embarazadas entre 32 y 36 semanas que culminarán el embarazo durante temporada invernal; una dosis IM.','embarazo'],
+['Influenza en ≥60 años','Una dosis anual, idealmente en la temporada invernal correspondiente.','mayor'],
+['COVID-19 en ≥60 años según PRONAM 2026','Una dosis; 12 meses después de la última dosis.','mayor'],
+['PCV20 en ≥60 años según PRONAM 2026','0.5 mL IM, región deltoidea derecha, dosis única.','mayor'],
+['PCV20 en 9–59 con comorbilidades','PRONAM indica dos dosis; si una se recibió antes de 60 años, aplicar una dosis adicional después de los 60. La tabla adjunta no fija aquí el intervalo: consultar lineamiento vigente.','crónicas'],
+['Hepatitis B estándar en persona no vacunada de riesgo','Esquema 0,1,6 meses con 10 mcg, o 0 y 1 mes con 20 mcg según presentación/estrategia del PRONAM.','riesgo'],
+['Hepatitis B en diálisis/hemodiálisis','40 mcg IM en 0,1,6 meses + confirmar seroconversión.','renal'],
+['VPH en persona de 11–49 años con VIH','3 dosis: 0,2,6 meses.','VIH'],
+['SR/SRP y embarazo','Contraindicada durante el embarazo por ser vacuna viva.','vivas'],
+['SR/SRP y vacunas vivas','Vivas parenterales: juntas el mismo día o separadas al menos 4 semanas.','coadministración'],
+['Enmienda 2026: personal de salud y sarampión','Una dosis adicional de SR; si no hay SR, puede usarse SRP, independientemente de esquema y edad.','ocupacional'],
+['Enmienda 2026: contraindicaciones SR/SRP','Embarazo, inmunosupresión grave y reacción alérgica grave a componentes.','seguridad'],
+['Regla de rescate','Un esquema incompleto no se reinicia: se continúa/completa respetando intervalos mínimos.','rescate'],
+['Influenza y embarazo','La vacuna inactivada es recomendada durante el embarazo; el PRONAM incluye embarazadas como población de riesgo anual.','embarazo'],
+['COVID y embarazo','PRONAM 2026: una dosis en cualquier trimestre, preferentemente segundo/tercero, al menos 6 meses después de la última dosis.','embarazo'],
+['Personal de salud: vacunas clave','Influenza anual, COVID según temporada/intervalo, Hepatitis B por exposición a sangre, sarampión según enmienda, y Td/Tdpa según antecedente/exposición.','ocupacional'],
+['¿Qué dato manda en inmunocomprometidos?','Primero si la vacuna es viva o no viva. Las vivas pueden estar contraindicadas en inmunosupresión grave; las no vivas suelen poder administrarse, aunque con respuesta menor.','inmunosupresión']
+];
+let fi=0;
+function loadFlash(){let f=flashcards[fi%flashcards.length];flashQ.textContent=f[0];flashA.textContent=f[1];flashTag.textContent=f[2];flashA.classList.remove('show')}
+showAns.onclick=()=>flashA.classList.add('show');
+hardBtn.onclick=()=>{S.seen++;S.streak=0;S.xp+=2;fi=(fi+1)%flashcards.length;save();loadFlash()}
+goodBtn.onclick=()=>{S.seen++;S.correct++;S.streak++;S.xp+=8+Math.min(S.streak,5);fi=(fi+1)%flashcards.length;save();loadFlash()}
+loadFlash();
+
+const cases=[
+{t:'Persona de 68 años sin antecedente documentado de neumococo. ¿Qué opción encaja con PRONAM 2026?',o:['PCV20 dosis única IM','Esperar hasta 75 años','PCV20 cada año','Contraindicada por edad'],a:0,e:'≥60 años: PCV20 0.5 mL IM, dosis única.'},
+{t:'Embarazada de 30 semanas, Tdpa no aplicada en este embarazo. ¿Qué haces?',o:['Diferir al puerperio','Tdpa ahora','SRP ahora','Varicela ahora'],a:1,e:'Tdpa se aplica en cada embarazo desde semana 20, preferentemente 27–36.'},
+{t:'Embarazada de 34 semanas que terminará el embarazo en temporada invernal. ¿Qué vacuna específica agrega PRONAM 2026?',o:['VSR','SRP','Varicela','BCG'],a:0,e:'VSR: una dosis IM entre 32–36 semanas si culminará el embarazo en temporada invernal.'},
+{t:'Trabajador de salud con esquema completo de sarampión. En la enmienda mexicana 2026, ¿qué cambia?',o:['Nada','Una dosis adicional SR o SRP','Dos dosis cada año','Solo serología'],a:1,e:'La enmienda indica una dosis adicional para personal de salud independientemente de esquema y edad.'},
+{t:'Paciente en hemodiálisis sin vacunación contra hepatitis B. ¿Qué recuerda la lógica de riesgo?',o:['40 mcg 0-1-6 + serología','Una dosis anual','Vacuna viva','No vacunar'],a:0,e:'PRONAM: 40 mcg en 0,1,6 meses y confirmar seroconversión.'},
+{t:'Persona con esquema Td incompleto que vuelve años después. ¿Qué regla aplica?',o:['Reiniciar todo','Completar faltantes','No vacunar','Solo Tdpa cada mes'],a:1,e:'Los esquemas interrumpidos se completan; no se reinician.'},
+{t:'Persona con VIH de 22 años: ¿qué esquema VPH señala PRONAM?',o:['Única','0-2-6 meses','0-1-12 meses','No está indicada'],a:1,e:'Personas de 11–49 años con VIH: 3 dosis 0-2-6.'},
+{t:'Embarazada susceptible a sarampión. ¿Qué decisión es correcta?',o:['SRP ahora','SR ahora','Diferir vacuna viva y vacunar después del embarazo','Aplicar dos dosis simultáneas'],a:2,e:'SR/SRP están contraindicadas durante el embarazo.'},
+{t:'Dos vacunas vivas parenterales no se aplicaron el mismo día. ¿Qué regla usas?',o:['24 horas','7 días','4 semanas','6 meses'],a:2,e:'Vivas: simultáneas o separadas al menos 4 semanas.'},
+{t:'Adulto de 54 años con enfermedad cardiaca crónica. ¿Qué vacuna cambia por la comorbilidad en PRONAM?',o:['PCV20 entra como población de riesgo','BCG anual','SRP obligatoria cada año','Rotavirus'],a:0,e:'PCV20 incluye 9–59 años con cardiopatía, diabetes, hepatopatía, neumopatía, asplenia, enfermedad renal, inmunodeficiencia, cáncer, trasplante o VIH.'}
+];
+let ci=0;
+function loadCase(){const c=cases[ci%cases.length];caseText.textContent=c.t;caseChoices.innerHTML='';caseFeedback.className='feedback';caseFeedback.textContent='';c.o.forEach((x,i)=>{let b=document.createElement('button');b.className='choice';b.textContent=x;b.onclick=()=>answerCase(i,b);caseChoices.appendChild(b)})}
+function answerCase(i,b){let c=cases[ci%cases.length];caseChoices.querySelectorAll('button').forEach(x=>x.disabled=true);S.seen++;if(i===c.a){b.classList.add('ok');S.correct++;S.streak++;S.xp+=15;caseFeedback.className='feedback show okbox';caseFeedback.textContent='Correcto. '+c.e}else{b.classList.add('bad');caseChoices.children[c.a].classList.add('ok');S.streak=0;caseFeedback.className='feedback show badbox';caseFeedback.textContent='Clave: '+c.e}save()}
+nextCase.onclick=()=>{ci=(ci+1)%cases.length;loadCase()};loadCase();
+
+const vaccines=[
+{name:'Td / Tdpa',sig:'Td, Tdpa',agent:'Toxinas de Clostridium tetani y Corynebacterium diphtheriae; Tdpa añade Bordetella pertussis.',trans:'Tétanos: inoculación de esporas en heridas; difteria y pertussis: respiratoria. Complicaciones: tétanos generalizado, obstrucción/miocarditis por difteria, pertussis grave en lactantes.',type:'Toxoides; Tdpa incluye antígenos acelulares de pertussis. No viva.',target:'Td: ≥15 años; Tdpa: cada embarazo y personas en contacto con menores de 1 año sin antecedente.',scheme:'Td completo: dosis/refuerzo cada 10 años. Incompleto/no documentado: 0,1,12 meses. Tdpa: cada embarazo desde semana 20, preferentemente 27–36.',route:'0.5 mL IM, deltoides izquierdo.',co:'Puede coadministrarse con vacunas no vivas; usar sitios distintos.',contra:'Anafilaxia a dosis/componente; revisar precauciones del producto. No es vacuna viva.',rx:'Dolor local frecuente; fiebre y síntomas sistémicos menos frecuentes. Vigilar ESAVI según definición del PVU.',storage:'Seguir ficha técnica y red de frío institucional; Lineamientos PVU contemplan conservación según biológico.',mx:'PRONAM 2026 mantiene refuerzo Td cada 10 años y Tdpa en cada embarazo.',intl:'OMS respalda protección antitetánica a lo largo de la vida y vacunación materna con vacuna que contenga pertussis según programa.'},
+{name:'Influenza',sig:'IIV / antiinfluenza',agent:'Virus influenza A/B. Enfermedad respiratoria; transmisión por gotas/aerosoles/contacto. Puede causar neumonía y descompensar cardiopatía, neumopatía, diabetes y embarazo.',type:'La usada en estos grupos es inactivada; no viva.',target:'México: ≥60 años, embarazo, personal de salud y 5–59/9–59 con comorbilidades según grupo.',scheme:'Una dosis anual en grupos señalados; infancia sin esquema puede requerir 2 dosis separadas 4 semanas.',route:'0.5 mL IM; deltoides en mayores.',co:'OMS acepta coadministración, incluso con COVID-19, usando sitios distintos.',contra:'Reacción alérgica severa previa; menores de 6 meses para esta vacuna.',rx:'Dolor local, cefalea, síntomas sistémicos; anafilaxia es infrecuente.',storage:'Conservar conforme ficha técnica y cadena de frío del producto.',mx:'Vacunación estacional anual para grupos de riesgo.',intl:'OMS considera prioritarios personal de salud, personas con comorbilidades, mayores y embarazadas.'},
+{name:'COVID-19',sig:'COVID-19',agent:'SARS-CoV-2; transmisión respiratoria. Complicaciones: neumonía, hipoxemia, trombosis y enfermedad grave en grupos de riesgo.',type:'Según producto: ARNm, subunidades proteicas u otras plataformas; no asumir una sola tecnología.',target:'México 2026: ≥60, personal de salud, embarazo y 5–59 con riesgo; además esquema pediátrico específico.',scheme:'≥60: una dosis 12 meses tras última. Embarazo: una dosis, cualquier trimestre, preferible 2º/3º, ≥6 meses tras última. Personal de salud: una dosis 12 meses tras última. Riesgo 5–59: una dosis; PRONAM no recomienda refuerzo rutinario para ese grupo en la tabla especial.',route:'IM, región deltoidea.',co:'Puede coadministrarse con influenza y otras vacunas según recomendaciones técnicas.',contra:'Depende del producto; principal contraindicación general: reacción alérgica grave a componente/dosis previa.',rx:'Dolor local, cefalea, fiebre, fatiga. Eventos graves raros; el perfil depende de plataforma.',storage:'Muy dependiente del producto: revisar guía específica; el PVU contempla refrigeración, congelación o ultracongelación según biológico.',mx:'Prioriza formulaciones actualizadas y grupos de mayor riesgo.',intl:'OMS adapta recomendaciones a riesgo, inmunidad poblacional y contexto epidemiológico.'},
+{name:'Neumococo conjugada 20-valente',sig:'PCV20',agent:'Streptococcus pneumoniae; transmisión respiratoria. Puede causar neumonía, bacteriemia y meningitis.',type:'Vacuna conjugada; no viva.',target:'México: ≥60 años; 9–59 con comorbilidades como cardiopatía, diabetes, hepatopatía, neumopatía, asplenia, renal, inmunodeficiencia, cáncer, trasplante o VIH.',scheme:'≥60: dosis única. 9–59 con comorbilidad: PRONAM indica 2 dosis; si se recibió una antes de 60, aplicar una dosis adicional después de 60. El extracto adjunto no especifica aquí el intervalo entre las dos dosis: confirmar lineamiento vigente.',route:'0.5 mL IM, deltoides derecho.',co:'Coadministración generalmente aceptable con vacunas no vivas; sitios distintos.',contra:'Anafilaxia a dosis/componente.',rx:'Dolor local, fiebre/malestar en una minoría.',storage:'Conservar según ficha técnica en red de frío.',mx:'PCV20 incorporada en PRONAM 2026 para adultos mayores y grupos de riesgo.',intl:'OMS recomienda PCV ampliamente en infancia; para adultos mayores remite a evaluación local de carga y costo-efectividad.'},
+{name:'Hepatitis B',sig:'HB',agent:'Virus hepatitis B; sangre, sexual y perinatal. Complicaciones: hepatitis crónica, cirrosis y carcinoma hepatocelular.',type:'Antígeno recombinante de superficie; no viva.',target:'No vacunados y grupos de riesgo: personal de salud, VIH, enfermedad renal/hepática, diálisis, múltiples parejas, exposición a sangre, convivientes HBsAg+, entre otros.',scheme:'PRONAM: 10 mcg 0,1,6 meses o 20 mcg 0 y 1 mes según estrategia. Diálisis/hemodiálisis: 40 mcg 0,1,6 + serología.',route:'IM en deltoides; brazo derecho/no dominante según tabla.',co:'Puede coadministrarse con otras vacunas.',contra:'Anafilaxia a componente/dosis previa.',rx:'Dolor local; fiebre y malestar poco frecuentes.',storage:'Cadena de frío conforme ficha técnica.',mx:'Vacunación dirigida por edad y riesgo; personal de salud con evaluación de protección si realiza actividades de exposición.',intl:'OMS recomienda esquema de rescate 0,1,6 para no vacunados y prioriza grupos de alto riesgo.'},
+{name:'Sarampión-Rubéola / Triple viral',sig:'SR / SRP',agent:'Virus sarampión, rubéola y, en SRP, parotiditis. Transmisión respiratoria. Complicaciones: neumonía/encefalitis por sarampión, síndrome de rubéola congénita, orquitis/parotiditis.',type:'Vacunas vivas atenuadas.',target:'PRONAM: 10–49 años sin esquema o incompleto; enmienda 2026 añade estrategias por brote y dosis adicional a personal de salud.',scheme:'PRONAM: sin esquema 2 dosis separadas mínimo 4 semanas; con una dosis previa, 1 dosis. Enmienda 2026: personal de salud una dosis adicional SR o SRP independientemente de esquema y edad.',route:'0.5 mL subcutánea, región deltoidea.',co:'Vivas: simultáneas o separadas al menos 4 semanas.',contra:'Embarazo, inmunosupresión grave y alergia grave a componentes; SRP además debe respetar precauciones por hemoderivados/inmunoglobulina.',rx:'Fiebre, exantema y reacciones locales; eventos graves son raros.',storage:'Conservar según ficha técnica; proteger cadena de frío y condiciones de reconstitución.',mx:'Enmienda del 18-feb-2026 actualiza respuesta frente a sarampión.',intl:'OMS mantiene 2 dosis de vacuna que contenga sarampión en programas y evita vacuna durante embarazo/inmunosupresión grave.'},
+{name:'VPH',sig:'VPH / HPV',agent:'Virus del papiloma humano; transmisión sexual. Complicaciones: cáncer cervicouterino y otros cánceres anogenitales/orofaríngeos.',type:'Partículas similares a virus; no viva.',target:'México: 5º de primaria/11 años no escolarizados; rezagos definidos; personas de 11–49 años con VIH.',scheme:'VIH 11–49: 3 dosis 0,2,6 meses. Otros grupos mexicanos señalados en PRONAM pueden recibir dosis única según estrategia.',route:'0.5 mL IM, deltoides del brazo no dominante.',co:'OMS permite coadministración con vacunas vivas o no vivas en sitios distintos.',contra:'Anafilaxia a componente. Embarazo: diferir dosis pendientes; lactancia no es contraindicación según OMS.',rx:'Dolor local, síncope vasovagal en adolescentes, fiebre/malestar.',storage:'Conforme ficha técnica y red de frío.',mx:'PRONAM 2026 mantiene estrategia escolar y esquema de 3 dosis para VIH.',intl:'OMS: objetivo primario 9–14 años; inmunocomprometidos/VIH al menos 2 y, cuando sea posible, 3 dosis.'},
+{name:'Virus sincitial respiratorio materna',sig:'VSR / RSVpreF',agent:'Virus sincitial respiratorio; transmisión respiratoria. En lactantes puede causar bronquiolitis y neumonía grave.',type:'Vacuna proteica de prefusión; no viva.',target:'México: personas embarazadas 32–36 semanas que culminarán embarazo en temporada invernal.',scheme:'Una dosis.',route:'0.5 mL IM.',co:'OMS permite administración junto con otras vacunas del embarazo en sitios distintos.',contra:'Reacción alérgica grave a componente; valorar indicaciones del producto.',rx:'Dolor local, cefalea, mialgias, náusea; PRONAM menciona asociación rara con preeclampsia/hipertensión gestacional.',storage:'Seguir ficha técnica del producto.',mx:'Incluida en PRONAM 2026 para embarazo 32–36 semanas en contexto estacional.',intl:'OMS recomienda una dosis materna en tercer trimestre según contexto local, idealmente >2 semanas antes del parto.'},
+{name:'Varicela',sig:'VZV',agent:'Virus varicela-zóster; transmisión respiratoria y contacto con lesiones. Complicaciones: sobreinfección cutánea, neumonía, encefalitis; más grave en adultos e inmunocomprometidos.',type:'Viva atenuada.',target:'México 2026: la vacuna no forma parte del esquema básico general; se aplica en guarderías/centros infantiles sujeto a disponibilidad estatal. En adultos susceptibles, la recomendación internacional depende del programa.',scheme:'OMS: para prevención efectiva, 2 dosis; también 2 dosis para rescate de adolescentes/adultos susceptibles.',route:'Subcutánea según producto/programa.',co:'Puede darse con otras; con otras vivas, simultánea o separación mínima 28 días.',contra:'Embarazo e inmunosupresión grave; anafilaxia a componente.',rx:'Dolor local, fiebre, exantema leve.',storage:'Especialmente sensible a condiciones del producto; seguir ficha técnica.',mx:'No es esquema básico universal general en la publicación mexicana citada.',intl:'OMS recomienda 2 dosis donde el programa nacional la incorpore; trabajadores de salud susceptibles pueden considerarse para vacunación.'}
+];
+function renderPassports(){passportList.innerHTML='';vaccines.forEach(v=>{let d=document.createElement('details');d.className='passport';d.innerHTML='<summary>'+v.name+' <span class="tag">'+v.sig+'</span></summary><div class="facts">'+
+[['Microorganismo y enfermedad',v.agent],['Transmisión y complicaciones',v.trans],['Tipo',v.type],['Población objetivo',v.target],['Esquema y rescate',v.scheme],['Vía y sitio',v.route],['Coadministración',v.co],['Contraindicaciones/precauciones',v.contra],['Reacciones / ESAVI',v.rx],['Conservación',v.storage],['México 2026',v.mx],['Internacional',v.intl]].map(x=>'<div class="fact"><b>'+x[0]+':</b> '+x[1]+'</div>').join('')+'</div>';passportList.appendChild(d)})}
+renderPassports();
+
+const bank=[
+['¿Cuál es el orden ECER?',['Edad/antecedentes → Condición → Excepciones → Registrar','Exposición → Contraindicación → Edad → Refuerzo','Edad → Registrar → Contraindicar → Exponer'],0],
+['Td no documentado en adulto',['0-1-12 meses','0-2-6 meses','dosis única'],0],
+['Tdpa embarazo',['cada embarazo desde semana 20','solo primer embarazo','contraindicada'],0],
+['VSR México 2026',['32-36 semanas si termina embarazo en invierno','cualquier adulto','solo posparto'],0],
+['PCV20 ≥60',['dosis única','anual','cada 10 años'],0],
+['VPH con VIH 11-49',['0-2-6','0-1-12','única'],0],
+['Vacuna viva y embarazo',['diferir','aplicar doble dosis','sin restricciones'],0],
+['Dos vivas parenterales no simultáneas',['separar 4 semanas','separar 24 horas','separar 1 año'],0],
+['Hepatitis B hemodiálisis',['40 mcg 0-1-6 + serología','10 mcg única','no vacunar'],0],
+['Personal de salud y enmienda sarampión',['dosis adicional SR/SRP','ningún cambio','vacuna anual'],0],
+['Influenza en ≥60',['anual','cada 10 años','una vez'],0],
+['Esquema interrumpido',['se completa sin reiniciar','se reinicia siempre','se cancela'],0],
+['COVID ≥60 PRONAM',['una dosis 12 meses tras última','cada mes','no indicada'],0],
+['SR/SRP: contraindicación real',['inmunosupresión grave','diabetes','hipertensión controlada'],0],
+['Regla central en inmunosupresión',['distinguir vacuna viva vs no viva','evitar toda vacuna','duplicar toda dosis'],0]
+];
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1])}
+function makeExam(){examBox.innerHTML='';let qs=shuffle(bank).slice(0,12);let score=0,done=0;qs.forEach((q,n)=>{let box=document.createElement('div');box.className='passport';box.innerHTML='<b>'+(n+1)+'. '+q[0]+'</b>';q[1].forEach((op,i)=>{let b=document.createElement('button');b.className='choice';b.textContent=op;b.onclick=()=>{if(box.dataset.done)return;box.dataset.done='1';done++;S.seen++;if(i===q[2]){b.classList.add('ok');score++;S.correct++;S.xp+=10}else{b.classList.add('bad');box.querySelectorAll('button')[q[2]].classList.add('ok')}save();if(done===qs.length){let r=document.createElement('div');r.className='feedback show '+(score>=10?'okbox':'badbox');r.innerHTML='<b>Resultado: '+score+'/12 ('+Math.round(score/12*100)+'%)</b><br>'+(score>=10?'Listo para teach-back.':'Repite flashcards difíciles y vuelve a generar el examen.');examBox.appendChild(r)}};box.appendChild(b)});examBox.appendChild(box)})}
+newExam.onclick=makeExam;makeExam();renderStats();
+</script>
+</body>
+</html>
